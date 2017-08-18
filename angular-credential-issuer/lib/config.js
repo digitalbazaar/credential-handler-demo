@@ -19,7 +19,6 @@ bedrock.events.on('bedrock-express.ready', function(app) {
 // server info
 config.server.port = 18081;
 config.server.httpPort = 18080;
-config.server.bindAddr = 'credential-issuer.demo.digitalbazaar.com';
 config.server.domain = 'credential-issuer.demo.digitalbazaar.com';
 config.server.host = 'credential-issuer.demo.digitalbazaar.com';
 config.server.baseUri = 'https://' + config.server.host;
