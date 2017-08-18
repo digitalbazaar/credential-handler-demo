@@ -8,6 +8,7 @@
     "postinstall": "node ./lib/index.js compile-less"
   },
   "dependencies": {
+    "angular-web-request-mediator": "digitalbazaar/angular-web-request-mediator#wip",
     "bedrock": "^1.4.1",
     "bedrock-angular": "^3.0.0",
     "bedrock-docs": "^2.1.0",
