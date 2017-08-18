@@ -1,0 +1,13 @@
+<div>
+  <h3>Credential Verifier Example</h3>
+  <div>
+    Please provide credentials to proceed
+  </div>
+  <div>
+    <a href="" ng-click="$ctrl.login()">Login</a>
+  </div>
+  <div ng-if="$ctrl.credential">
+    <div>Credential received, here's all of your info! =)</div>
+    <pre>{{$ctrl.credential | json}}</pre>
+  </div>
+</div>

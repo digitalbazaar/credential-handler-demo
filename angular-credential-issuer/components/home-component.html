@@ -1,0 +1,13 @@
+<div>
+  <h3>Credential Issuer Example</h3>
+  <div>
+    Please store this credential
+  </div>
+  <div>
+    <a href="" ng-click="$ctrl.store()">Store</a>
+  </div>
+  <div ng-if="$ctrl.credential">
+    <div>Credential stored, here's all of your info! =)</div>
+    <pre>{{$ctrl.credential | json}}</pre>
+  </div>
+</div>

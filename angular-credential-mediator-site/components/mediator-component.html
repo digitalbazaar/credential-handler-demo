@@ -1,0 +1,31 @@
+<div ng-if="$ctrl.display === 'permissionRequest'">
+  <wrm-permission-dialog
+    wrm-origin="$ctrl.relyingDomain"
+    wrm-permissions="$ctrl.permissions"
+    wrm-on-deny="$ctrl.deny()" wrm-on-allow="$ctrl.accept()"></wrm-permission-dialog>
+</div>
+
+<div ng-if="$ctrl.display === 'credentialRequest'" style="background-color: white">
+  <!-- TODO: replace with credential request components -->
+  <div>{{$ctrl.relyingOrigin}} is requesting credentials</div>
+  <div ng-if="$ctrl.loading">
+    Loading credential options...
+  </div>
+  <div ng-repeat="option in $ctrl.hintOptions">
+    <div>Name: {{option.credentialHint.name}}</div>
+    <div>Origin: {{option.hostname}}</div>
+    <button ng-click="$ctrl.selectHint(option)">Select</button>
+  </div>
+</div>
+
+<div ng-if="$ctrl.display === 'credentialStore'" style="background-color: white">
+  <div>{{$ctrl.relyingOrigin}} is requesting credential storage</div>
+  <div ng-if="$ctrl.loading">
+    Loading credential options...
+  </div>
+  <div ng-repeat="option in $ctrl.hintOptions">
+    <div>Name: {{option.credentialHint.name}}</div>
+    <div>Origin: {{option.hostname}}</div>
+    <button ng-click="$ctrl.selectHint(option)">Select</button>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+{
+  "name": "angular-credential-verifier",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./lib/index.js",
+    "postinstall": "node ./lib/index.js compile-less"
+  },
+  "dependencies": {
+    "bedrock": "^1.4.1",
+    "bedrock-angular": "^3.0.0",
+    "bedrock-docs": "^2.1.0",
+    "bedrock-express": "^2.0.6",
+    "bedrock-server": "^2.2.0",
+    "bedrock-validation": "^2.2.1",
+    "bedrock-views": "^5.1.0",
+    "bedrock-webpack": "^1.0.2",
+    "credential-handler-polyfill": "^0.0.1"
+  },
+  "bedrock": {
+    "browserDependencies": [
+      "bedrock-angular",
+      "credential-handler-polyfill"
+    ]
+  },
+  "engines": {
+    "node": ">=6.9.0"
+  }
+}
