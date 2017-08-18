@@ -3,6 +3,7 @@
  */
 const bedrock = require('bedrock');
 require('bedrock-views');
+require('bedrock-webpack');
 
 // load config
 require('./config');
