@@ -3,24 +3,14 @@
  */
 'use strict';
 
-const bedrock = require('bedrock');
-const config = bedrock.config;
+const config = require('bedrock').config;
 const path = require('path');
-
-// only run application on HTTP port
-bedrock.events.on('bedrock-express.ready', function(app) {
-  // attach express to regular http
-  require('bedrock-server').servers.http.on('request', app);
-  // cancel default behavior of attaching to HTTPS
-  return false;
-});
+require('bedrock-server');
 
 // server info
-config.server.port = 19081;
-config.server.httpPort = 19080;
-config.server.domain = 'credential-mediator.demo.digitalbazaar.com';
-config.server.host = 'credential-mediator.demo.digitalbazaar.com';
-config.server.baseUri = 'https://' + config.server.host;
+config.server.port = 15443;
+config.server.httpPort = 15080;
+config.server.domain = 'credential.mediator.dev';
 
 // angular-credential-mediator-site pseudo package
 const rootPath = path.join(__dirname, '..');
@@ -28,26 +18,3 @@ config.views.system.packages.push({
   path: path.join(rootPath, 'components'),
   manifest: path.join(rootPath, 'package.json')
 });
-
-config.views.vars.minify = true;
-
-// common paths
-config.paths.cache = path.join('/var', 'cache', 'credential-mediator');
-config.paths.log = path.join('/var', 'log', 'credential-mediator');
-
-// core configuration
-config.core.workers = 1;
-config.core.worker.restart = true;
-
-// master process while starting
-config.core.starting.groupId = 'adm';
-config.core.starting.userId = 'root';
-
-// master and workers after starting
-config.core.running.groupId = 'bedrock';
-config.core.running.userId = 'bedrock';
-
-// logging
-config.loggers.app.bedrock.enableChownDir = true;
-config.loggers.access.bedrock.enableChownDir = true;
-config.loggers.error.bedrock.enableChownDir = true;

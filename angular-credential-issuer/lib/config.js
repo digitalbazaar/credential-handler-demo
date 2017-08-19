@@ -3,24 +3,14 @@
  */
 'use strict';
 
-const bedrock = require('bedrock');
-const config = bedrock.config;
+const config = require('bedrock').config;
 const path = require('path');
-
-// only run application on HTTP port
-bedrock.events.on('bedrock-express.ready', function(app) {
-  // attach express to regular http
-  require('bedrock-server').servers.http.on('request', app);
-  // cancel default behavior of attaching to HTTPS
-  return false;
-});
+require('bedrock-server');
 
 // server info
-config.server.port = 18081;
-config.server.httpPort = 18080;
-config.server.domain = 'credential-issuer.demo.digitalbazaar.com';
-config.server.host = 'credential-issuer.demo.digitalbazaar.com';
-config.server.baseUri = 'https://' + config.server.host;
+config.server.port = 16443;
+config.server.httpPort = 16080;
+config.server.domain = 'example.issuer.dev';
 
 // angular-credential-issuer pseudo package
 const rootPath = path.join(__dirname, '..');
