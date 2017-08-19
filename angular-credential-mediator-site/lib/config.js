@@ -3,14 +3,24 @@
  */
 'use strict';
 
-const config = require('bedrock').config;
+const bedrock = require('bedrock');
+const config = bedrock.config;
 const path = require('path');
-require('bedrock-server');
+
+// only run application on HTTP port
+bedrock.events.on('bedrock-express.ready', function(app) {
+  // attach express to regular http
+  require('bedrock-server').servers.http.on('request', app);
+  // cancel default behavior of attaching to HTTPS
+  return false;
+});
 
 // server info
-config.server.port = 15443;
-config.server.httpPort = 15080;
-config.server.domain = 'credential.mediator.dev';
+config.server.port = 19081;
+config.server.httpPort = 19080;
+config.server.domain = 'credential-mediator.demo.digitalbazaar.com';
+config.server.host = 'credential-mediator.demo.digitalbazaar.com';
+config.server.baseUri = 'https://' + config.server.host;
 
 // angular-credential-mediator-site pseudo package
 const rootPath = path.join(__dirname, '..');
@@ -18,3 +28,5 @@ config.views.system.packages.push({
   path: path.join(rootPath, 'components'),
   manifest: path.join(rootPath, 'package.json')
 });
+
+config.views.vars.minify = true;
