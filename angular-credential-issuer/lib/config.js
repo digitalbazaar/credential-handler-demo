@@ -46,8 +46,3 @@ config.core.starting.userId = 'root';
 // master and workers after starting
 config.core.running.groupId = 'bedrock';
 config.core.running.userId = 'bedrock';
-
-// logging
-config.loggers.app.bedrock.enableChownDir = true;
-config.loggers.access.bedrock.enableChownDir = true;
-config.loggers.error.bedrock.enableChownDir = true;
