@@ -19,7 +19,7 @@
     "bedrock-webpack": "^1.0.2",
     "credential-mediator-polyfill": "^0.0.1",
     "font-awesome": "^4.7.0",
-    "web-request-rpc": "^0.0.3"
+    "web-request-rpc": "^0.0.6"
   },
   "bedrock": {
     "browserDependencies": [
