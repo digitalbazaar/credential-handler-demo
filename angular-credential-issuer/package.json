@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./lib/index.js",
-    "postinstall": "node ./lib/index.js compile-less"
+    "postinstall": "node ./lib/index.js optimize"
   },
   "dependencies": {
     "bedrock": "^1.4.1",
