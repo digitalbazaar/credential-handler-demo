@@ -6,7 +6,6 @@
 const bedrock = require('bedrock');
 const config = bedrock.config;
 const path = require('path');
-require('bedrock-server');
 
 // only run application on HTTP port
 bedrock.events.on('bedrock-express.ready', function(app) {
@@ -29,3 +28,5 @@ config.views.system.packages.push({
   path: path.join(rootPath, 'components'),
   manifest: path.join(rootPath, 'package.json')
 });
+
+config.views.vars.minify = true;
