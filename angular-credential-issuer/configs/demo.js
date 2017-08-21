@@ -7,6 +7,21 @@ const bedrock = require('bedrock');
 const config = bedrock.config;
 const path = require('path');
 
+// only run application on HTTP port
+bedrock.events.on('bedrock-express.ready', function(app) {
+  // attach express to regular http
+  require('bedrock-server').servers.http.on('request', app);
+  // cancel default behavior of attaching to HTTPS
+  return false;
+});
+
+// server info
+config.server.port = 18081;
+config.server.httpPort = 18080;
+config.server.domain = 'credential-issuer.demo.digitalbazaar.com';
+config.server.host = 'credential-issuer.demo.digitalbazaar.com';
+config.server.baseUri = 'https://' + config.server.host;
+
 config.views.vars.minify = true;
 
 // common paths
