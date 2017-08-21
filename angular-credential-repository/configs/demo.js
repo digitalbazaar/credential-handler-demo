@@ -22,7 +22,8 @@ config.server.domain = 'credential-repository.demo.digitalbazaar.com';
 config.server.host = 'credential-repository.demo.digitalbazaar.com';
 config.server.baseUri = 'https://' + config.server.host;
 
-config.views.vars.minify = true;
+//config.views.vars.minify = true;
+config.views.vars.minify = false;
 
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
