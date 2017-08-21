@@ -11,7 +11,7 @@
     <pre>
       async function login() {
         try {
-          const credential = await credentials.get({
+          const credential = await navigator.credentials.get({
             web: {
               verifiableProfile: {
                 name: true
