@@ -1,13 +1,41 @@
 <div>
   <h3>Credential Issuer Example</h3>
-  <div>
-    Please store this credential
+  <p>
+    This is a credential issuer demonstration website.
+    <a href="" ng-click="$ctrl.showDetails=!$ctrl.showDetails">Show technical details</a>
+  </p>
+  <div ng-if="$ctrl.showDetails">
+    <p>This website uses the Credential Handler API polyfill. It calls
+    code that looks like this when the &quotStore&quot button is pressed:</p>
+    <pre>
+      async function store() {
+        try {
+          const credential = new WebCredential('verifiableProfile', {
+            '@context': 'https://w3id.org/credentials/v1',
+            id: 'did:method1:1234-1234-1234-1234',
+            name: 'Pat Doe'
+          });
+          const result = await credentials.store(credential);
+          if(result) {
+            console.log('Credential stored!', result);
+          }
+        } catch(e) {
+          console.error(e);
+        }
+      }
+    </pre>
   </div>
   <div>
-    <a href="" ng-click="$ctrl.store()">Store</a>
+    Please store this credential:
   </div>
+  <div>Issuer: Example Issuer</div>
+  <div>Your name: Pat Doe</div>
+  <div>
+    <button ng-click="$ctrl.store()">Store</button>
+  </div>
+  <br>
   <div ng-if="$ctrl.credential">
-    <div>Credential stored, here's all of your info! =)</div>
+    <div>Credential stored, here's what was stored:</div>
     <pre>{{$ctrl.credential | json}}</pre>
   </div>
 </div>

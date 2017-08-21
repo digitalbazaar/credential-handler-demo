@@ -18,8 +18,9 @@ function Ctrl($scope) {
   self.store = async () => {
     try {
       const credential = new WebCredential('verifiableProfile', {
+        '@context': 'https://w3id.org/credentials/v1',
         id: 'did:method1:1234-1234-1234-1234',
-        fooAttribute: true
+        name: 'Pat Doe'
       });
       self.credential = await credentials.store(credential);
       console.log('credential stored', self.credential);

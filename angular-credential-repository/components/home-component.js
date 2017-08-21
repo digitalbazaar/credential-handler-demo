@@ -73,7 +73,7 @@ async function addHints(registration) {
     registration.credentialManager.hints.set(
       'default',
       {
-        name: 'My Foo Identity',
+        name: 'One of my personal identities',
         enabledTypes: ['verifiableProfile'],
         capabilities: {
           verifiableProfileId: 'did:method1:1234-1234-1234-1234'

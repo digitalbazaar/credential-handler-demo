@@ -13,8 +13,8 @@ module.component('ciHome', HomeComponent);
 
 bedrock.setRootModule(module);
 
-//const MEDIATOR_ORIGIN = 'https://credential.mediator.dev:15443';
-const MEDIATOR_ORIGIN = 'https://credential-mediator.demo.digitalbazaar.com';
+const MEDIATOR_ORIGIN = 'https://credential.mediator.dev:15443';
+//const MEDIATOR_ORIGIN = 'https://credential-mediator.demo.digitalbazaar.com';
 
 const loadPolyfillPromise = polyfill.loadOnce(
   MEDIATOR_ORIGIN + '/mediator?origin=' +

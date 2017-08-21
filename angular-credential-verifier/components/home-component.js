@@ -19,7 +19,7 @@ function Ctrl($scope) {
       self.credential = await credentials.get({
         web: {
           verifiableProfile: {
-            fooAttribute: true
+            name: true
           }
         }
       });

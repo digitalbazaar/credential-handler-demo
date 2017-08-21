@@ -4,8 +4,8 @@
 /* global navigator */
 'use strict';
 
-//const MEDIATOR_ORIGIN = 'https://credential.mediator.dev:15443';
-const MEDIATOR_ORIGIN = 'https://credential-mediator.demo.digitalbazaar.com';
+const MEDIATOR_ORIGIN = 'https://credential.mediator.dev:15443';
+//const MEDIATOR_ORIGIN = 'https://credential-mediator.demo.digitalbazaar.com';
 
 export async function activate() {
   console.log('credential handler activating!');

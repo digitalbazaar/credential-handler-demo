@@ -23,8 +23,9 @@ function Ctrl($scope) {
       credential: {
         dataType: 'verifiableProfile',
         data: {
+          '@context': 'https://w3id.org/credentials/v1',
           id: 'did:method1:1234-1234-1234-1234',
-          fooAttribute: 'foobar'
+          name: 'Pat Doe'
         }
       }
     }, window.location.origin);
