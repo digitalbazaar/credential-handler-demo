@@ -18,6 +18,7 @@ export default {
 /* @ngInject */
 function Ctrl($location, $scope) {
   const self = this;
+  self.hintOptions = [];
   self.permissions = [{
     name: 'Manage credentials',
     icon: 'fa fa-id-card-o'
@@ -47,10 +48,15 @@ function Ctrl($location, $scope) {
 
   self.selectHint = async (selection) => {
     self.display = null;
+    if(!selection) {
+      self.credentialOperationPromise.resolve(null);
+      return await navigator.credentialMediator.hide();
+    }
+
     let response;
     try {
       response = await navigator.credentialMediator.ui.selectCredentialHint(
-        selection);
+        selection.hintOption);
       console.log('response', response);
     } catch(e) {
       console.error(e);
@@ -106,10 +112,12 @@ function Ctrl($location, $scope) {
     // get matching hints
     const hintOptions = await navigator.credentialMediator.ui
       .matchCredential(operationState.credential);
-    self.hintOptions = hintOptions.map(
-      option => Object.assign({
-        hostname: utils.parseUrl(option.credentialHandler).hostname
-      }, option));
+    self.hintOptions = hintOptions.map(option => ({
+      name: option.credentialHint.name,
+      icon: getIconDataUrl(option.credentialHint),
+      origin: utils.parseUrl(option.credentialHandler).hostname,
+      hintOption: option
+    }));
     self.loading = false;
     $scope.$apply();
 
@@ -134,10 +142,12 @@ function Ctrl($location, $scope) {
     // get matching hints
     const hintOptions = await navigator.credentialMediator.ui
       .matchCredential(operationState.credential);
-    self.hintOptions = hintOptions.map(
-      option => Object.assign({
-        hostname: utils.parseUrl(option.credentialHandler).hostname
-      }, option));
+    self.hintOptions = hintOptions.map(option => ({
+      name: option.credentialHint.name,
+      icon: getIconDataUrl(option.credentialHint),
+      origin: utils.parseUrl(option.credentialHandler).hostname,
+      hintOption: option
+    }));
     self.loading = false;
     $scope.$apply();
 
@@ -145,4 +155,12 @@ function Ctrl($location, $scope) {
 
     return promise;
   }
+}
+
+function getIconDataUrl(credentialHint) {
+  if(credentialHint.icons.length > 0) {
+    // TODO: choose appropriately sized icon
+    // return icon.fetchedImage;
+  }
+  return null;
 }
