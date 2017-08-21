@@ -15,7 +15,7 @@
     "bedrock-validation": "^2.2.1",
     "bedrock-views": "^5.1.0",
     "bedrock-webpack": "^1.0.2",
-    "credential-handler-polyfill": "^0.1.0"
+    "credential-handler-polyfill": "digitalbazaar/credential-handler-polyfill#fix-events"
   },
   "bedrock": {
     "browserDependencies": [
