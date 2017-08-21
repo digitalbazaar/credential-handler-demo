@@ -46,4 +46,11 @@
   <div>
     <a href="" ng-click="$ctrl.uninstall()">Uninstall Credential Wallet</a>
   </div>
+  <br>
+  <div ng-if="$ctrl.installed">
+    Wallet successfully installed!
+  </div>
+  <div ng-if="$ctrl.uninstalled">
+    Wallet uninstalled.
+  </div>
 </div>

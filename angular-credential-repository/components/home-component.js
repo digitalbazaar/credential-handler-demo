@@ -10,14 +10,17 @@ export default {
 };
 
 /* @ngInject */
-function Ctrl() {
+function Ctrl($scope) {
   const self = this;
 
   self.install = async () => {
     console.log('installing...');
     try {
+      self.installed = self.uninstalled = false;
       await install();
       console.log('installation complete.');
+      self.installed = true;
+      $scope.$apply();
     } catch(e) {
       console.error('installation failed,', e);
     }
@@ -26,7 +29,10 @@ function Ctrl() {
   self.uninstall = async () => {
     console.log('uninstalling...');
     try {
+      self.installed = self.uninstalled = false;
       await uninstall();
+      self.uninstalled = true;
+      $scope.$apply();
       console.log('uninstallation complete.');
     } catch(e) {
       console.error('uninstallation failed,', e);
