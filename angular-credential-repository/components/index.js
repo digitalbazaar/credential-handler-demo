@@ -19,7 +19,13 @@ module.component('cwCredentialStore', CredentialStoreComponent);
 
 bedrock.setRootModule(module);
 console.log('credential repository loading at ', window.location.href);
-const loadPolyfillPromise = polyfill.loadOnce();
+
+//const MEDIATOR_ORIGIN = 'https://credential.mediator.dev:15443';
+const MEDIATOR_ORIGIN = 'https://credential-mediator.demo.digitalbazaar.com';
+
+const loadPolyfillPromise = polyfill.loadOnce(
+  MEDIATOR_ORIGIN + '/mediator?origin=' +
+  encodeURIComponent(window.location.origin));
 
 /* @ngInject */
 module.config($routeProvider => {

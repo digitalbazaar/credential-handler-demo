@@ -4,11 +4,13 @@
 /* global navigator */
 'use strict';
 
+//const MEDIATOR_ORIGIN = 'https://credential.mediator.dev:15443';
+const MEDIATOR_ORIGIN = 'https://credential-mediator.demo.digitalbazaar.com';
+
 export async function activate() {
   console.log('credential handler activating!');
   const CredentialHandler = navigator.credentialsPolyfill.CredentialHandler;
-  const mediatorOrigin = 'https://credential.mediator.dev:15443';
-  const self = new CredentialHandler(mediatorOrigin);
+  const self = new CredentialHandler(MEDIATOR_ORIGIN);
 
   self.addEventListener('credentialrequest', event => {
     console.log('got credential request event', event);
