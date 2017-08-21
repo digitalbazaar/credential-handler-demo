@@ -7,5 +7,3 @@ require('bedrock-webpack');
 
 // load config
 require('./config');
-
-bedrock.start();
