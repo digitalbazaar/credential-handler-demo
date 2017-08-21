@@ -10,7 +10,8 @@ const path = require('path');
 config.views.vars.minify = true;
 
 // common paths
-config.paths.cache = path.join('/var', 'cache', 'credential-issuer');
+config.paths.cache = path.join(__dirname, '..', '.cache');
+// config.paths.cache = path.join('/var', 'cache', 'credential-issuer');
 config.paths.log = path.join('/var', 'log', 'credential-issuer');
 
 // core configuration
