@@ -16,17 +16,17 @@ bedrock.events.on('bedrock-express.ready', app => {
 });
 
 // server info
-config.server.port = 18081;
-config.server.httpPort = 18080;
-config.server.domain = 'credential-issuer.demo.digitalbazaar.com';
-config.server.host = 'credential-issuer.demo.digitalbazaar.com';
+config.server.port = 19081;
+config.server.httpPort = 19080;
+config.server.domain = 'credential-mediator.demo.digitalbazaar.com';
+config.server.host = 'credential-mediator.demo.digitalbazaar.com';
 config.server.baseUri = 'https://' + config.server.host;
 
 config.views.vars.minify = true;
 
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
-config.paths.log = path.join('/var', 'log', 'credential-issuer');
+config.paths.log = path.join('/var', 'log', 'credential-mediator');
 
 // core configuration
 config.core.workers = 1;
