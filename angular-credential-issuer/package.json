@@ -4,8 +4,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node ./lib/index.js",
-    "postinstall": "node ./lib/index.js optimize"
+    "start": "node ./lib/index.js"
   },
   "dependencies": {
     "bedrock": "^1.4.1",
