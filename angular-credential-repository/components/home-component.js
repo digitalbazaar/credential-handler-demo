@@ -72,6 +72,10 @@ async function uninstall() {
   // unregister credential handler registration
   await CredentialHandlers.unregister('/credential-handler');
   console.log('credential handler unregistered');
+
+  // revoke permission (useful for demonstration purposes)
+  await navigator.credentialsPolyfill.permissions.revoke(
+    {name: 'credentialhandler'});
 }
 
 async function addHints(registration) {
