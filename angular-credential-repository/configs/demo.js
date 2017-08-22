@@ -6,6 +6,9 @@
 const bedrock = require('bedrock');
 const config = bedrock.config;
 const path = require('path');
+require('bedrock-server');
+require('bedrock-express');
+require('bedrock-views');
 
 // only run application on HTTP port
 bedrock.events.on('bedrock-express.ready', app => {
@@ -23,6 +26,8 @@ config.server.host = 'credential-repository.demo.digitalbazaar.com';
 config.server.baseUri = 'https://' + config.server.host;
 
 config.views.vars.minify = true;
+
+config.express.staticOptions.maxAge = '15m';
 
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
