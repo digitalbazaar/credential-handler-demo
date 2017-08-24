@@ -16,7 +16,7 @@ export default {
 };
 
 /* @ngInject */
-function Ctrl($location, $scope) {
+function Ctrl($compile, $location, $scope) {
   const self = this;
   self.hintOptions = [];
   self.permissions = [{
@@ -47,8 +47,8 @@ function Ctrl($location, $scope) {
   };
 
   self.selectHint = async (selection) => {
-    self.display = null;
     if(!selection) {
+      self.display = null;
       self.credentialOperationPromise.resolve(null);
       return await navigator.credentialMediator.hide();
     }
@@ -65,7 +65,10 @@ function Ctrl($location, $scope) {
     if(response) {
       self.credentialOperationPromise.resolve(response);
     }
+
+    self.display = null;
     await navigator.credentialMediator.hide();
+    $scope.$apply();
   };
 
   (async () => {
@@ -74,7 +77,10 @@ function Ctrl($location, $scope) {
         relyingOrigin: self.relyingOrigin,
         requestPermission,
         getCredential,
-        storeCredential
+        storeCredential,
+        customizeHandlerWindow({webAppWindow}) {
+          updateHandlerWindow(webAppWindow);
+        }
       });
       console.log('credential mediator site loaded polyfill');
     } catch(e) {
@@ -154,6 +160,15 @@ function Ctrl($location, $scope) {
     console.log('hints', self.hintOptions);
 
     return promise;
+  }
+
+  function updateHandlerWindow(handlerWindow) {
+    const container = handlerWindow.container;
+    const header = $compile(
+      '<cm-handler-window-header cm-relying-domain="$ctrl.relyingDomain">')(
+        $scope);
+    container.insertBefore(header[0], handlerWindow.iframe);
+    handlerWindow.iframe.style.background = 'white';
   }
 }
 

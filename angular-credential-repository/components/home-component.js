@@ -81,12 +81,27 @@ async function uninstall() {
 async function addHints(registration) {
   return Promise.all([
     registration.credentialManager.hints.set(
-      'default',
-      {
-        name: 'One of my personal identities',
+      'social', {
+        name: 'My social identity',
         enabledTypes: ['verifiableProfile'],
         capabilities: {
           verifiableProfileId: 'did:method1:1234-1234-1234-1234'
+        }
+      }),
+    registration.credentialManager.hints.set(
+      'business', {
+        name: 'My business identity',
+        enabledTypes: ['verifiableProfile'],
+        capabilities: {
+          verifiableProfileId: 'did:method1:1234-1234-1234-1235'
+        }
+      }),
+    registration.credentialManager.hints.set(
+      'personal', {
+        name: 'My personal identity',
+        enabledTypes: ['verifiableProfile'],
+        capabilities: {
+          verifiableProfileId: 'did:method1:1234-1234-1234-1236'
         }
       })
     ]);

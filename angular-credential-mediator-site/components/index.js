@@ -3,13 +3,15 @@
  */
 import angular from 'angular';
 import * as bedrock from 'bedrock-angular';
-import HomeComponent from './home-component';
-import MediatorComponent from './mediator-component';
+import HandlerWindowHeaderComponent from './handler-window-header-component.js';
+import HomeComponent from './home-component.js';
+import MediatorComponent from './mediator-component.js';
 
 'use strict';
 
 const module = angular.module(
   'angular-credential-mediator-site', ['web-request-mediator']);
+module.component('cmHandlerWindowHeader', HandlerWindowHeaderComponent);
 module.component('cmHome', HomeComponent);
 module.component('cmMediator', MediatorComponent);
 
