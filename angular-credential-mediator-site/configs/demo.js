@@ -25,7 +25,7 @@ config.server.domain = 'credential-mediator.demo.digitalbazaar.com';
 config.server.host = 'credential-mediator.demo.digitalbazaar.com';
 config.server.baseUri = 'https://' + config.server.host;
 
-config.views.vars.minify = false;
+config.views.vars.minify = true;
 
 config.express.staticOptions.maxAge = '15m';
 
