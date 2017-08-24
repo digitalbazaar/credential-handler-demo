@@ -35,6 +35,6 @@ function Ctrl($scope) {
     // request payment request
     window.parent.postMessage({type: 'request'}, window.location.origin);
 
-    console.log('loaded payment app UI');
+    console.log('loaded credential request UI');
   })();
 }
