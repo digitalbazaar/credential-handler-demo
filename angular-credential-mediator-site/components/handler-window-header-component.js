@@ -6,7 +6,8 @@
 
 export default {
   bindings: {
-    relyingDomain: '<cmRelyingDomain'
+    relyingDomain: '<cmRelyingDomain',
+    operation: '@cmOperation'
   },
   templateUrl:
     'angular-credential-mediator-site/handler-window-header-component.html'

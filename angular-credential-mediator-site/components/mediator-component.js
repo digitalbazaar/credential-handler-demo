@@ -164,9 +164,10 @@ function Ctrl($compile, $location, $scope) {
 
   function updateHandlerWindow(handlerWindow) {
     const container = handlerWindow.container;
+    const operation = self.credentialRequestOptions ? 'request' : 'store';
     const header = $compile(
-      '<cm-handler-window-header cm-relying-domain="$ctrl.relyingDomain">')(
-        $scope);
+      '<cm-handler-window-header cm-relying-domain="$ctrl.relyingDomain" ' +
+      `cm-operation="${operation}">`)($scope);
     container.insertBefore(header[0], handlerWindow.iframe);
     handlerWindow.iframe.style.background = 'white';
   }
