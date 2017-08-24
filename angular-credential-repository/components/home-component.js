@@ -48,7 +48,6 @@ async function install() {
   const result = await CredentialManager.requestPermission();
   if(result !== 'granted') {
     throw new Error('Permission denied.');
-    return;
   }
 
   // get payment handler registration
