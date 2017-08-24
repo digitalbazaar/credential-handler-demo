@@ -105,7 +105,8 @@ function Ctrl($compile, $location, $scope) {
   async function getCredential(operationState) {
     // prep display
     self.display = 'credentialRequest';
-    self.credentialRequestOptions = operationState.credentialRequestOptions;
+    self.credentialRequestOptions =
+      operationState.input.credentialRequestOptions;
     self.loading = true;
     const promise = new Promise((resolve, reject) => {
       self.credentialOperationPromise = {resolve, reject};
@@ -135,7 +136,7 @@ function Ctrl($compile, $location, $scope) {
   async function storeCredential(operationState) {
     // prep display
     self.display = 'credentialStore';
-    self.credential = operationState.credential;
+    self.credential = operationState.input.credential;
     self.loading = true;
     const promise = new Promise((resolve, reject) => {
       self.credentialOperationPromise = {resolve, reject};
