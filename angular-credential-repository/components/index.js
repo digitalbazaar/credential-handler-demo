@@ -4,8 +4,8 @@
 import angular from 'angular';
 import * as bedrock from 'bedrock-angular';
 import * as polyfill from 'credential-handler-polyfill';
+import {activate as activateHandler} from './credential-handler';
 import HomeComponent from './home-component';
-import CredentialHandlerComponent from './credential-handler-component';
 import CredentialRequestComponent from './credential-request-component';
 import CredentialStoreComponent from './credential-store-component';
 
@@ -13,11 +13,9 @@ import CredentialStoreComponent from './credential-store-component';
 
 const module = angular.module('angular-credential-repository', []);
 module.component('cwHome', HomeComponent);
-module.component('cwCredentialHandler', CredentialHandlerComponent);
 module.component('cwCredentialRequest', CredentialRequestComponent);
 module.component('cwCredentialStore', CredentialStoreComponent);
 
-bedrock.setRootModule(module);
 console.log('credential repository loading at ', window.location.href);
 
 //const MEDIATOR_ORIGIN = 'https://credential.mediator.dev:15443';
@@ -27,6 +25,16 @@ const loadPolyfillPromise = polyfill.loadOnce(
   MEDIATOR_ORIGIN + '/mediator?origin=' +
   encodeURIComponent(window.location.origin));
 
+if(window.location.pathname === '/credential-handler') {
+  (async () => {
+    await loadPolyfillPromise;
+    activateHandler();
+  })();
+} else {
+  // only bootstrap AngularJS app when not using credential handler
+  bedrock.setRootModule(module);
+}
+
 /* @ngInject */
 module.config($routeProvider => {
   $routeProvider
@@ -35,20 +43,6 @@ module.config($routeProvider => {
       template: '<cw-home></cw-home>',
       resolve: {
         polyfill($q) {
-          return $q.resolve(loadPolyfillPromise);
-        }
-      }
-    })
-    // TODO: Would be nice to separate out the credential handler from the
-    // rest of the application as a single static page in the future because
-    // it would be a better (and more efficient) example; for now it is here
-    // out of convenience/speed of implementation.
-    .when('/credential-handler', {
-      title: 'Credential Handler',
-      template: '<cw-credential-handler></cw-credential-handler>',
-      resolve: {
-        polyfill($q) {
-          console.log('waiting to resolve credential handler route...');
           return $q.resolve(loadPolyfillPromise);
         }
       }
