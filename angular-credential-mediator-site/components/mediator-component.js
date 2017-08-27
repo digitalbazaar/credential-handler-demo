@@ -7,9 +7,6 @@
 import * as polyfill from 'credential-mediator-polyfill';
 import {utils} from 'web-request-rpc';
 
-// TODO: import from angular-web-request or something else?
-//import {PermissionDialogComponent} from 'angular-web-request';
-
 export default {
   controller: Ctrl,
   templateUrl: 'angular-credential-mediator-site/mediator-component.html'
