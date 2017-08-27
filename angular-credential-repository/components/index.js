@@ -30,6 +30,7 @@ if(window.location.pathname === '/credential-handler') {
     await loadPolyfillPromise;
     activateHandler();
   })();
+  bedrock.setRootModule(false);
 } else {
   // only bootstrap AngularJS app when not using credential handler
   bedrock.setRootModule(module);
