@@ -6,10 +6,10 @@
 </div>
 
 <div ng-if="$ctrl.display === 'credentialRequest'">
-  <wrm-item-chooser wrm-items="$ctrl.hintOptions"
-    wrm-on-select="$ctrl.selectHint(item)"
+  <wrm-hint-chooser wrm-hints="$ctrl.hintOptions"
+    wrm-on-confirm="$ctrl.selectHint(hint)"
     wrm-on-cancel="$ctrl.selectHint()">
-    <wrm-item-chooser-header>
+    <wrm-hint-chooser-header>
       <div>
         <strong>{{$ctrl.relyingDomain}}</strong> wants credentials
       </div>
@@ -24,15 +24,15 @@
           Choose a credential provider to continue:
         </div>
       </div>
-    </wrm-item-chooser-header>
-  </wrm-item-chooser>
+    </wrm-hint-chooser-header>
+  </wrm-hint-chooser>
 </div>
 
 <div ng-if="$ctrl.display === 'credentialStore'">
-  <wrm-item-chooser wrm-items="$ctrl.hintOptions"
-    wrm-on-select="$ctrl.selectHint(item)"
+  <wrm-hint-chooser wrm-hints="$ctrl.hintOptions"
+    wrm-on-confirm="$ctrl.selectHint(hint)"
     wrm-on-cancel="$ctrl.selectHint()">
-    <wrm-item-chooser-header>
+    <wrm-hint-chooser-header>
       <div>
         <strong>{{$ctrl.relyingDomain}}</strong> wants to store
         credentials
@@ -49,6 +49,6 @@
           Choose a credential provider to continue:
         </div>
       </div>
-    </wrm-item-chooser-header>
-  </wrm-item-chooser>
+    </wrm-hint-chooser-header>
+  </wrm-hint-chooser>
 </div>
