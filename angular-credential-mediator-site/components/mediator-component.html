@@ -7,6 +7,7 @@
 
 <div ng-if="$ctrl.display === 'credentialRequest'">
   <wrm-hint-chooser wrm-hints="$ctrl.hintOptions"
+    wrm-default-hint-icon="fa-user"
     wrm-on-confirm="$ctrl.selectHint(hint)"
     wrm-on-cancel="$ctrl.selectHint()">
     <wrm-hint-chooser-header>
@@ -30,6 +31,7 @@
 
 <div ng-if="$ctrl.display === 'credentialStore'">
   <wrm-hint-chooser wrm-hints="$ctrl.hintOptions"
+    wrm-default-hint-icon="fa-user"
     wrm-on-confirm="$ctrl.selectHint(hint)"
     wrm-on-cancel="$ctrl.selectHint()">
     <wrm-hint-chooser-header>
