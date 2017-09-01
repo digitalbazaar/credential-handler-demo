@@ -4,8 +4,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node ./lib/index.js",
-    "postinstall": "node ./lib/index.js compile-less"
+    "start": "node dev.js",
+    "postinstall": "node dev.js compile-less"
   },
   "dependencies": {
     "bedrock": "^1.4.1",
