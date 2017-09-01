@@ -11,7 +11,7 @@
     wrm-on-confirm="$ctrl.selectHint(hint)"
     wrm-on-cancel="$ctrl.selectHint()">
     <wrm-hint-chooser-header>
-      <div>
+      <div style="padding-right: 10px">
         <strong>{{$ctrl.relyingDomain}}</strong> wants credentials
       </div>
       <div ng-if="$ctrl.loading">
@@ -25,6 +25,7 @@
           Choose a credential provider to continue:
         </div>
       </div>
+      <br>
     </wrm-hint-chooser-header>
   </wrm-hint-chooser>
 </div>
@@ -35,7 +36,7 @@
     wrm-on-confirm="$ctrl.selectHint(hint)"
     wrm-on-cancel="$ctrl.selectHint()">
     <wrm-hint-chooser-header>
-      <div>
+      <div style="padding-right: 10px">
         <strong>{{$ctrl.relyingDomain}}</strong> wants to store
         credentials
       </div>
