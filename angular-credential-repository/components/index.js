@@ -28,7 +28,7 @@ const loadPolyfillPromise = polyfill.loadOnce(
 if(window.location.pathname === '/credential-handler') {
   (async () => {
     await loadPolyfillPromise;
-    activateHandler();
+    activateHandler(MEDIATOR_ORIGIN);
   })();
   bedrock.setRootModule(false);
 } else {
