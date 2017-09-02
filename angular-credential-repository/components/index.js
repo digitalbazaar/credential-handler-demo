@@ -48,7 +48,7 @@ module.config($routeProvider => {
         }
       }
     })
-    .when('/credential-request', {
+    .when('/credentialrequest', {
       title: 'Credential Wallet',
       template: '<cw-credential-request></cw-credential-request>',
       resolve: {
@@ -57,7 +57,7 @@ module.config($routeProvider => {
         }
       }
     })
-    .when('/credential-store', {
+    .when('/credentialstore', {
       title: 'Credential Wallet',
       template: '<cw-credential-store></cw-credential-store>',
       resolve: {

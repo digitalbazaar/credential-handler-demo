@@ -18,7 +18,7 @@ function Ctrl($scope) {
     try {
       self.credential = await credentials.get({
         web: {
-          verifiableProfile: {
+          VerifiableProfile: {
             name: true
           }
         }

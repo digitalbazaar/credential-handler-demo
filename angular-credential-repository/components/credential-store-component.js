@@ -20,6 +20,7 @@ function Ctrl($scope) {
 
   self.store = () => {
     window.parent.postMessage({
+      type: 'response',
       credential: self.credential
     }, window.location.origin);
   };

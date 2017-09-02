@@ -20,8 +20,9 @@ function Ctrl($scope) {
 
   self.send = () => {
     window.parent.postMessage({
+      type: 'response',
       credential: {
-        dataType: 'verifiableProfile',
+        dataType: 'VerifiableProfile',
         data: {
           '@context': 'https://w3id.org/credentials/v1',
           id: 'did:method1:1234-1234-1234-1234',
