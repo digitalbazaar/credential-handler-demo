@@ -82,7 +82,7 @@ async function addHints(registration) {
     registration.credentialManager.hints.set(
       'social', {
         name: 'My social identity',
-        enabledTypes: ['verifiableProfile'],
+        enabledTypes: ['VerifiableProfile'],
         capabilities: {
           verifiableProfileId: 'did:method1:1234-1234-1234-1234'
         }
@@ -90,7 +90,7 @@ async function addHints(registration) {
     registration.credentialManager.hints.set(
       'business', {
         name: 'My business identity',
-        enabledTypes: ['verifiableProfile'],
+        enabledTypes: ['VerifiableProfile'],
         capabilities: {
           verifiableProfileId: 'did:method1:1234-1234-1234-1235'
         }
@@ -98,7 +98,7 @@ async function addHints(registration) {
     registration.credentialManager.hints.set(
       'personal', {
         name: 'My personal identity',
-        enabledTypes: ['verifiableProfile'],
+        enabledTypes: ['VerifiableProfile'],
         capabilities: {
           verifiableProfileId: 'did:method1:1234-1234-1234-1236'
         }
