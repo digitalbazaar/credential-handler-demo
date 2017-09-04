@@ -115,7 +115,7 @@ function Ctrl($compile, $location, $scope) {
 
     // get matching hints
     const hintOptions = await navigator.credentialMediator.ui
-      .matchCredential(operationState.credential);
+      .matchCredentialRequest(operationState.input.credentialRequestOptions);
     self.hintOptions = hintOptions.map(option => ({
       name: option.credentialHint.name,
       icon: getIconDataUrl(option.credentialHint),
@@ -145,7 +145,7 @@ function Ctrl($compile, $location, $scope) {
 
     // get matching hints
     const hintOptions = await navigator.credentialMediator.ui
-      .matchCredential(operationState.credential);
+      .matchCredential(operationState.input.credential);
     self.hintOptions = hintOptions.map(option => ({
       name: option.credentialHint.name,
       icon: getIconDataUrl(option.credentialHint),
