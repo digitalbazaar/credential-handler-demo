@@ -3,6 +3,8 @@
  */
 'use strict';
 
+import localforage from 'localforage';
+
 export default {
   controller: Ctrl,
   templateUrl: 'angular-credential-repository/credential-store-component.html'
@@ -13,15 +15,22 @@ function Ctrl($scope) {
   const self = this;
 
   window.addEventListener('message', event => {
-    console.log('frontend got credential storage request', event.data);
-    self.credential = event.data;
+    console.log('UI window got credential storage request', event.data);
+    self.profile = event.data.credential.data;
     $scope.$apply();
   });
 
-  self.store = () => {
+  self.store = async () => {
+    const storage = localforage.createInstance({name: 'credentials'});
+    await storage.setItem(
+      self.profile.id, self.profile.credential[0]['@graph']);
+
     window.parent.postMessage({
       type: 'response',
-      credential: self.credential
+      credential: {
+        dataType: 'VerifiableProfile',
+        data: self.profile
+      }
     }, window.location.origin);
   };
 

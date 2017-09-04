@@ -14,12 +14,16 @@ function Ctrl($scope) {
   const self = this;
   const credentials = navigator.credentialsPolyfill.credentials;
 
-  self.login = async () => {
+  self.request = async () => {
     try {
       self.credential = await credentials.get({
         web: {
           VerifiableProfile: {
-            name: true
+            '@context': {
+              'br': 'urn:bedrock:',
+              'cred': 'https://w3id.org/credentials#'
+            },
+            'br:test:passport': {'cred:isOptional': true}
           }
         }
       });

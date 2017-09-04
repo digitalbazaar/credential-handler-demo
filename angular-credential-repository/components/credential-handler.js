@@ -18,6 +18,27 @@ export async function activate(mediatorOrigin) {
 
 function handleCredentialEvent(event) {
   event.respondWith(new Promise(async (resolve, reject) => {
+    // handle request for ID and public key (typical login)
+    if(event.type === 'credentialrequest') {
+      let query = event.credentialRequestOptions.web.VerifiableProfile;
+      query = Object.assign({}, query);
+      delete query['@context'];
+      if('id' in query && 'publicKey' in query &&
+        Object.keys(query).length === 2) {
+        // cryptokey request, return verifiable profile immediately
+        return resolve({
+          dataType: 'VerifiableProfile',
+          data: {
+            '@context': 'https://w3id.org/identity/v1',
+            id: event.hintKey,
+            // TODO: add public key credential
+            // credential: ...
+          }
+        });
+      }
+    }
+
+    // handle other requests that require a UI
     let windowClient;
     let listener;
     window.addEventListener('message', listener = e => {
@@ -27,11 +48,15 @@ function handleCredentialEvent(event) {
       }
 
       if(e.data.type === 'request') {
-        console.log('sending credential event data to frontend...');
-        // send event data to frontend
-        const message = event.type === 'credentialrequest' ?
-          event.credentialRequestOptions : event.credential;
-        return windowClient.postMessage(message, window.location.origin);
+        console.log('sending credential event data to UI window...');
+        // send event data to UI window
+        return windowClient.postMessage({
+          type: event.type,
+          credentialRequestOrigin: event.credentialRequestOrigin,
+          credentialRequestOptions: event.credentialRequestOptions,
+          credential: event.credential,
+          hintKey: event.hintKey
+        }, window.location.origin);
       }
 
       // this message is final (an error or a response)

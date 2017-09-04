@@ -25,13 +25,15 @@
       }
     </pre>
   </div>
-  <div>
-    Please store this credential:
+  <div ng-if="!$ctrl.userDid">
+    <button ng-click="$ctrl.login()">Login</button>
   </div>
-  <div>Issuer: Example Issuer</div>
-  <div>Your name: Pat Doe</div>
-  <div>
-    <button ng-click="$ctrl.store()">Store</button>
+  <div ng-if="$ctrl.userDid">
+    <div>Your DID: {{$ctrl.userDid}}</div>
+    <div>Please click store to store a passport credential.</div>
+    <div>
+      <button ng-click="$ctrl.store()">Store Passport</button>
+    </div>
   </div>
   <br>
   <div ng-if="$ctrl.credential">

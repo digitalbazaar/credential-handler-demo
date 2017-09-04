@@ -15,13 +15,15 @@
     "bedrock-server": "^2.2.0",
     "bedrock-validation": "^2.2.1",
     "bedrock-views": "^5.1.0",
-    "bedrock-webpack": "^1.0.2",
-    "credential-handler-polyfill": "^0.1.0"
+    "bedrock-webpack": "digitalbazaar/bedrock-webpack#excludeLocalForage",
+    "credential-handler-polyfill": "^0.1.0",
+    "localforage": "^1.5.0"
   },
   "bedrock": {
     "browserDependencies": [
       "bedrock-angular",
-      "credential-handler-polyfill"
+      "credential-handler-polyfill",
+      "localforage"
     ]
   },
   "engines": {
