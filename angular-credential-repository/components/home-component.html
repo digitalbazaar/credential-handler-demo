@@ -1,56 +1,86 @@
-<div>
-  <h3>Credential Wallet Example</h3>
-  <p>
-    This is a credential repository (aka wallet) demonstration website. It
-    allows you to register a "credential handler" that can handle credential
-    requests and credential storage requests from other websites.
-    <a href="" ng-click="$ctrl.showDetails=!$ctrl.showDetails">Show technical details</a>
-  </p>
-  <div ng-if="$ctrl.showDetails">
-    <p>This website uses the Credential Handler API polyfill. It calls
-    code that looks like this add choices for users to select to fulfill
-    requests for credentials:</p>
-    <pre>
-      async function install() {
-        const result = await CredentialManager.requestPermission();
-        if(result !== 'granted') {
-          throw new Error('Permission denied.');
-          return;
-        }
+<div layout="column">
 
-        // get payment handler registration
-        const registration = await CredentialHandlers.register('/credential-handler');
+  <md-toolbar class="md-whiteframe-2dp">
+    <div class="md-toolbar-tools">
+      <i class="fa fa-database fa-lg" style="margin-right: 10px"></i>
+      <h3 class="md-toolbar-item md-headline">Example Credential Repository</h3>
+    </div>
+  </md-toolbar>
 
-        await addHints(registration);
-      }
+  <md-content layout="row">
+    <div flex="33"></div>
+    <div flex="34" layout="column" layout-padding>
+      <div layout="row" layout-align="space-between">
+        <h4>Credential Handler</h4>
+        <div>
+          <md-button class="md-raised md-primary"
+            ng-disabled="$ctrl.installed"
+            ng-click="$ctrl.install()">Install</md-button>
+          <md-button class="md-raised md-warn"
+            ng-disabled="!$ctrl.installed"
+            ng-click="$ctrl.uninstall()">Uninstall</md-button>
+        </div>
+      </div>
 
-      async function addHints(registration) {
-        return Promise.all([
-          registration.credentialManager.hints.set(
-            // this could be a UUID -- any 'key' understood by this wallet
-            'default',
-            {
-              name: 'One of my personal identities',
-              enabledTypes: ['verifiableProfile'],
-              capabilities: {
-                verifiableProfileId: 'did:method1:1234-1234-1234-1234'
+      <!-- TODO: implement adding random DID-based identity with name field
+      <div layout="row" layout-align="space-between">
+        <h4>Identities</h4>
+        <div>
+          <md-button class="md-raised md-primary"
+            ng-disabled="!$ctrl.installed"
+            ng-click="$ctrl.addIdentity()">Add</md-button>
+          <md-button class="md-raised md-warn"
+            ng-disabled="!$ctrl.installed"
+            ng-click="$ctrl.clearIdentities()">Clear</md-button>
+        </div>
+      </div>
+      -->
+
+      <div layout="column" layout-padding>
+        <p>
+          This is a credential repository (aka wallet) demonstration website. It
+          allows you to register a "credential handler" that can handle credential
+          requests and credential storage requests from other websites.
+          <a href="" ng-click="$ctrl.showDetails=!$ctrl.showDetails">Show technical details</a>
+        </p>
+        <div ng-if="$ctrl.showDetails">
+          <p>This website uses the Credential Handler API polyfill. It calls
+          code that looks like this add choices for users to select to fulfill
+          requests for credentials:</p>
+          <pre>
+            async function install() {
+              const result = await CredentialManager.requestPermission();
+              if(result !== 'granted') {
+                throw new Error('Permission denied.');
+                return;
               }
-            })
-          ]);
-      }
-    </pre>
-  </div>
-  <div>
-    <a href="" ng-click="$ctrl.install()">Install Credential Wallet</a>
-  </div>
-  <div>
-    <a href="" ng-click="$ctrl.uninstall()">Uninstall Credential Wallet</a>
-  </div>
-  <br>
-  <div ng-if="$ctrl.installed">
-    Wallet successfully installed!
-  </div>
-  <div ng-if="$ctrl.uninstalled">
-    Wallet uninstalled.
-  </div>
+
+              // get credential handler registration
+              const registration = await CredentialHandlers.register('/credential-handler');
+
+              await addHints(registration);
+            }
+
+            async function addHints(registration) {
+              return Promise.all([
+                registration.credentialManager.hints.set(
+                  // this could be a UUID -- any 'key' understood by this wallet
+                  'default',
+                  {
+                    name: 'One of my many identities',
+                    enabledTypes: ['VerifiableProfile'],
+                    match: {
+                      VerifiableProfile: {
+                        id: 'did:method1:1234-1234-1234-1234'
+                      }
+                    }
+                  })
+                ]);
+            }
+          </pre>
+        </div>
+      </div>
+    </div>
+    <div flex="33"></div>
+  </md-content>
 </div>

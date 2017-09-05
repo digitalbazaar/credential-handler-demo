@@ -13,6 +13,7 @@ export default {
 /* @ngInject */
 function Ctrl($scope) {
   const self = this;
+  self.loading = true;
 
   window.addEventListener('message', async event => {
     console.log('UI window got credential request', event.data);
@@ -20,10 +21,12 @@ function Ctrl($scope) {
     self.domain = event.data.credentialRequestOrigin;
     const storage = localforage.createInstance({name: 'credentials'});
     self.credential = await storage.getItem(event.data.hintKey);
+    self.loading = false;
     $scope.$apply();
   });
 
   self.send = () => {
+    self.loading = true;
     window.parent.postMessage({
       type: 'response',
       credential: {
@@ -46,7 +49,7 @@ function Ctrl($scope) {
     }, window.location.origin);
   };
 
-  // request payment request
+  // request credential request
   window.parent.postMessage({type: 'request'}, window.location.origin);
 
   console.log('loaded credential request UI');

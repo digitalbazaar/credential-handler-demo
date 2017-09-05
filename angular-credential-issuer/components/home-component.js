@@ -1,7 +1,7 @@
 /*!
  * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
  */
-/* global navigator */
+/* global navigator, WebCredential */
 'use strict';
 
 export default {
@@ -12,11 +12,11 @@ export default {
 /* @ngInject */
 function Ctrl($scope) {
   const self = this;
-  const credentials = navigator.credentialsPolyfill.credentials;
-  const WebCredential = navigator.credentialsPolyfill.WebCredential;
+  self.loading = false;
 
   self.login = async () => {
-    const credential = await credentials.get({
+    self.loading = true;
+    const credential = await navigator.credentials.get({
       web: {
         VerifiableProfile: {
           '@context': 'https://w3id.org/identity/v1',
@@ -28,19 +28,23 @@ function Ctrl($scope) {
     if(credential) {
       self.userDid = credential.data.id;
     }
+    self.loading = false;
     $scope.$apply();
   };
 
   self.store = async () => {
+    self.loading = true;
     try {
       const credential = new WebCredential(
         'VerifiableProfile', createDemoProfile(self.userDid));
-      self.credential = await credentials.store(credential);
+      self.credential = await navigator.credentials.store(credential);
       console.log('credential stored', self.credential);
-      $scope.$apply();
+      self.done = true;
     } catch(e) {
       console.error(e);
     }
+    self.loading = false;
+    $scope.$apply();
   };
 }
 
@@ -97,9 +101,9 @@ function createDemoProfile(did) {
           }
         },
         "signature": {
-          "type": "GraphSignature2012",
-          "created": "2015-01-09T01:02:03Z",
-          "creator": "https://issuer.example.org/i/demo/keys/1",
+          "type": "RsaSignature2017",
+          "created": "2017-08-09T01:02:03Z",
+          "creator": "did:" + uuid() + '/keys/1',
           "signatureValue": "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLM=="
         }
       }

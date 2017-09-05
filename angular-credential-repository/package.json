@@ -10,6 +10,8 @@
   "dependencies": {
     "bedrock": "^1.4.1",
     "bedrock-angular": "^3.0.0",
+    "bedrock-angular-material": "^1.0.1",
+    "bedrock-did-client": "^1.1.1",
     "bedrock-docs": "^2.1.0",
     "bedrock-express": "^2.0.6",
     "bedrock-server": "^2.2.0",
@@ -17,12 +19,15 @@
     "bedrock-views": "^5.1.0",
     "bedrock-webpack": "digitalbazaar/bedrock-webpack#excludeLocalForage",
     "credential-handler-polyfill": "^0.1.0",
+    "font-awesome": "^4.7.0",
     "localforage": "^1.5.0"
   },
   "bedrock": {
     "browserDependencies": [
       "bedrock-angular",
+      "bedrock-angular-material",
       "credential-handler-polyfill",
+      "font-awesome",
       "localforage"
     ]
   },

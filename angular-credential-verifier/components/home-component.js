@@ -12,11 +12,12 @@ export default {
 /* @ngInject */
 function Ctrl($scope) {
   const self = this;
-  const credentials = navigator.credentialsPolyfill.credentials;
+  self.loading = false;
 
   self.request = async () => {
+    self.loading = true;
     try {
-      self.credential = await credentials.get({
+      self.credential = await navigator.credentials.get({
         web: {
           VerifiableProfile: {
             '@context': {
@@ -28,9 +29,11 @@ function Ctrl($scope) {
         }
       });
       console.log('credential received by verifier', self.credential);
-      $scope.$apply();
+      self.done = true;
     } catch(e) {
       console.error(e);
     }
+    self.loading = false;
+    $scope.$apply();
   };
 }

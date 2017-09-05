@@ -9,6 +9,7 @@ const path = require('path');
 require('bedrock-server');
 require('bedrock-express');
 require('bedrock-views');
+require('bedrock-did-client');
 
 // only run application on HTTP port
 bedrock.events.on('bedrock-express.ready', app => {
@@ -49,3 +50,7 @@ config.core.running.userId = 'bedrock';
 config.loggers.app.bedrock.enableChownDir = true;
 config.loggers.access.bedrock.enableChownDir = true;
 config.loggers.error.bedrock.enableChownDir = true;
+
+// configures `authorization.io` URL for DID lookup
+config['did-client']['authorization-io'].baseUrl =
+  'https://demo.authorization.io';

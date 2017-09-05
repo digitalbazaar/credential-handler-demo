@@ -13,14 +13,17 @@ export default {
 /* @ngInject */
 function Ctrl($scope) {
   const self = this;
+  self.loading = true;
 
   window.addEventListener('message', event => {
     console.log('UI window got credential storage request', event.data);
     self.profile = event.data.credential.data;
+    self.loading = false;
     $scope.$apply();
   });
 
   self.store = async () => {
+    self.loading = true;
     const storage = localforage.createInstance({name: 'credentials'});
     await storage.setItem(
       self.profile.id, self.profile.credential[0]['@graph']);

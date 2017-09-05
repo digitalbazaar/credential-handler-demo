@@ -8,13 +8,12 @@ import HomeComponent from './home-component';
 
 'use strict';
 
-const module = angular.module('angular-credential-issuer', []);
+const module = angular.module('angular-credential-issuer', ['ngMaterial']);
 module.component('ciHome', HomeComponent);
 
 bedrock.setRootModule(module);
 
-//const MEDIATOR_ORIGIN = 'https://credential.mediator.dev:15443';
-const MEDIATOR_ORIGIN = 'https://credential-mediator.demo.digitalbazaar.com';
+const MEDIATOR_ORIGIN = window.data['authorization-io'].baseUri;
 
 const loadPolyfillPromise = polyfill.loadOnce(
   MEDIATOR_ORIGIN + '/mediator?origin=' +

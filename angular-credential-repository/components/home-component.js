@@ -1,7 +1,7 @@
 /*!
  * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
  */
-/* global navigator */
+/* global navigator, CredentialManager */
 'use strict';
 
 export default {
@@ -13,12 +13,26 @@ export default {
 function Ctrl($scope) {
   const self = this;
 
+  let registration;
+
+  self.$onInit = async () => {
+    try {
+      registration = await getRegistration();
+      //self.identities = await getIdentities(registration);
+      await registration.credentialManager.hints.keys();
+      self.installed = true;
+    } catch(e) {
+      // assume permission denied for demo
+      self.installed = false;
+      //self.identities = [];
+    }
+    $scope.$apply();
+  };
+
   self.install = async () => {
-    console.log('installing...');
     try {
       self.installed = self.uninstalled = false;
-      await install();
-      console.log('installation complete.');
+      registration = await install();
       self.installed = true;
       $scope.$apply();
     } catch(e) {
@@ -27,22 +41,33 @@ function Ctrl($scope) {
   };
 
   self.uninstall = async () => {
-    console.log('uninstalling...');
     try {
       self.installed = self.uninstalled = false;
       await uninstall();
       self.uninstalled = true;
+      registration = null;
       $scope.$apply();
-      console.log('uninstallation complete.');
     } catch(e) {
       console.error('uninstallation failed,', e);
     }
   };
 }
 
-async function install() {
+async function getRegistration() {
   const CredentialHandlers = navigator.credentialsPolyfill.CredentialHandlers;
-  const CredentialManager = navigator.credentialsPolyfill.CredentialManager;
+
+  let registration;
+  try {
+    // get credential handler registration
+    registration = await CredentialHandlers.register('/credential-handler');
+  } catch(e) {
+    // ignore
+  }
+  return registration;
+}
+
+async function install() {
+  console.log('installing...');
 
   // ensure permission has been granted to add a credential hint
   const result = await CredentialManager.requestPermission();
@@ -50,17 +75,24 @@ async function install() {
     throw new Error('Permission denied.');
   }
 
-  // get payment handler registration
-  const registration = await CredentialHandlers.register('/credential-handler');
+  // get credential handler registration
+  const registration = await getRegistration();
+  if(!registration) {
+    throw new Error('Credential handler not registered');
+  }
 
   console.log('adding hints');
   await addHints(registration);
   console.log('credential hints added');
+
+  console.log('installation complete.');
+  return registration;
 }
 
 async function uninstall() {
+  console.log('uninstalling...');
+
   const CredentialHandlers = navigator.credentialsPolyfill.CredentialHandlers;
-  const CredentialManager = navigator.credentialsPolyfill.CredentialManager;
 
   // ensure permission has been granted to add a credential hint
   const result = await CredentialManager.requestPermission();
@@ -75,6 +107,8 @@ async function uninstall() {
   // revoke permission (useful for demonstration purposes)
   await navigator.credentialsPolyfill.permissions.revoke(
     {name: 'credentialhandler'});
+
+  console.log('uninstallation complete.');
 }
 
 async function addHints(registration) {

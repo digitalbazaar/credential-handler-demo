@@ -1,41 +1,63 @@
-<div>
-  <h3>Credential Verifier Example</h3>
-  <p>
-    This is a credential verifier (relying party) demonstration website.
-    <a href="" ng-click="$ctrl.showDetails=!$ctrl.showDetails">Show technical details</a>
-  </p>
-  <div ng-if="$ctrl.showDetails">
-    <p>This website uses the Credential Handler API polyfill. It calls
-    code that looks like this to request credentials proving certain
-    attributes:</p>
-    <pre>
-      async function login() {
-        try {
-          const credential = await navigator.credentials.get({
-            web: {
-              verifiableProfile: {
-                name: true
+<div layout="column">
+
+  <md-toolbar class="md-whiteframe-2dp" style="background-color: green">
+    <div class="md-toolbar-tools">
+      <i class="fa fa-check-circle-o fa-lg" style="margin-right: 10px"></i>
+      <h3 class="md-toolbar-item md-headline">Example Credential Verifier</h3>
+    </div>
+  </md-toolbar>
+
+  <md-content layout="row">
+    <div flex="33"></div>
+    <div flex="34" layout="column" layout-padding>
+      <div ng-if="!$ctrl.done" layout="row" layout-padding>
+        <div>Please provide a passport credential to proceed.</div>
+      </div>
+      <div ng-if="!$ctrl.done" layout="row" layout-padding>
+        <md-button class="md-raised md-primary" ng-disabled="$ctrl.loading"
+          ng-click="$ctrl.request()" flex>
+          Provide Passport
+        </md-button>
+      </div>
+      <div ng-if="$ctrl.done && $ctrl.credential" layout-padding>
+        <div style="border: 1px solid lightgray; padding: 20px">
+          <i class="fa fa-check fa-lg" style="color: green; vertical-align: 0; margin-right: 5px"></i>
+          <span style="font-size: 20px">Credential received!</span>
+        </div>
+        <div style="margin-top: 10px">
+          Click <a href="" ng-click="$ctrl.showCredential=!$ctrl.showCredential">here</a>
+          to see the received credential in JSON format. <span ng-if="$ctrl.done">Click <a href="" ng-click="$ctrl.userDid=$ctrl.done=false">here</a> to start again.</span>
+        </div>
+        <pre ng-if="$ctrl.showCredential">{{$ctrl.credential | json}}</pre>
+      </div>
+      <div layout="column" layout-padding>
+        <p>
+          This is a credential verifier (relying party) demonstration website.
+          <a href="" ng-click="$ctrl.showDetails=!$ctrl.showDetails">Show technical details</a>
+        </p>
+        <div ng-if="$ctrl.showDetails">
+          <p>This website uses the Credential Handler API polyfill. It calls
+          code that looks like this to request credentials proving certain
+          attributes:</p>
+          <pre>
+            async function request() {
+              try {
+                const credential = await navigator.credentials.get({
+                  web: {
+                    VerifiableProfile: {
+                      name: true
+                    }
+                  }
+                });
+                console.log('credential received', credential);
+              } catch(e) {
+                console.error(e);
               }
-            }
-          });
-          console.log('credential received', credential);
-        } catch(e) {
-          console.error(e);
-        }
-      };
-    </pre>
-  </div>
-  <div>
-    Please provide a passport credential to proceed.
-  </div>
-  <div>
-    <a href="" ng-click="$ctrl.request()">Provide Passport</a>
-  </div>
-  <br>
-  <div ng-if="$ctrl.credential">
-    <div>Credential received. Here's what was received:</div>
-    <div>Note: As development continues, this information will become more
-    complete, including credential signatures, etc.</div>
-    <pre>{{$ctrl.credential | json}}</pre>
-  </div>
+            };
+          </pre>
+        </div>
+      </div>
+    </div>
+    <div flex="33"></div>
+  </md-content>
 </div>
