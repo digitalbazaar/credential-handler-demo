@@ -21,6 +21,15 @@
             ng-click="$ctrl.uninstall()">Uninstall</md-button>
         </div>
       </div>
+      <div ng-if="$ctrl.installed" layout="row">
+        <div style="border: 1px solid lightgray; padding: 20px">
+          <i class="fa fa-check fa-lg" style="color: green; vertical-align: 0; margin-right: 5px"></i>
+          <span style="font-size: 20px">Credential handler installed! Three
+          demo identities have been added. Please
+          visit the <a href="https://credential-issuer.demo.digitalbazaar.com">Example Credential Issuer</a>
+          to receive a demo credential.</span>
+        </div>
+      </div>
 
       <!-- TODO: implement adding random DID-based identity with name field
       <div layout="row" layout-align="space-between">

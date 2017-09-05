@@ -39,12 +39,17 @@
           <span style="font-size: 20px">Credential stored!</span>
         </div>
         <div style="margin-top: 10px">
+          <div>Please visit the
+          <a href="https://credential-verifier.demo.digitalbazaar.com">Example Credential Verifier</a>
+          to share this demo credential with a verifier.</div>
+        </div>
+        <div style="margin-top: 10px">
           Click <a href="" ng-click="$ctrl.showCredential=!$ctrl.showCredential">here</a>
           to see the stored credential in JSON format. <span ng-if="$ctrl.done">Click <a href="" ng-click="$ctrl.done=false">here</a> to start again.</span>
         </div>
         <pre ng-if="$ctrl.showCredential">{{$ctrl.credential | json}}</pre>
       </div>
-      <div layout="column" layout-padding>
+      <div layout="column">
         <p>
           This is a credential issuer demonstration website.
           <a href="" ng-click="$ctrl.showDetails=!$ctrl.showDetails">Show technical details</a>
