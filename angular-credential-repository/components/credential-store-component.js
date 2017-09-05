@@ -18,15 +18,24 @@ function Ctrl($scope) {
   window.addEventListener('message', event => {
     console.log('UI window got credential storage request', event.data);
     self.profile = event.data.credential.data;
+    self.credential = self.profile.credential[0]['@graph'];
+    console.log('credential', self.credential);
     self.loading = false;
     $scope.$apply();
   });
 
+  self.cancel = () => {
+    self.loading = true;
+    window.parent.postMessage({
+      type: 'response',
+      credential: null
+    }, window.location.origin);
+  };
+
   self.store = async () => {
     self.loading = true;
     const storage = localforage.createInstance({name: 'credentials'});
-    await storage.setItem(
-      self.profile.id, self.profile.credential[0]['@graph']);
+    await storage.setItem(self.profile.id, self.credential);
 
     window.parent.postMessage({
       type: 'response',

@@ -11,6 +11,9 @@
     <div flex="33"></div>
     <div flex="34" layout="column" layout-padding>
       <div ng-if="!$ctrl.done && !$ctrl.userDid" layout="row" layout-padding>
+        <div>Please login to be issued a demo passport credential.</div>
+      </div>
+      <div ng-if="!$ctrl.done && !$ctrl.userDid" layout="row" layout-padding>
         <md-button class="md-raised md-primary" ng-disabled="$ctrl.loading"
           ng-click="$ctrl.login()" flex>
           Login
@@ -22,7 +25,7 @@
         <div>{{$ctrl.userDid}}</div>
       </div>
       <div ng-if="!$ctrl.done && $ctrl.userDid" layout="row" layout-padding>
-        <div>Please click store to store a passport credential.</div>
+        <div>Use the button below store a demo passport credential.</div>
       </div>
       <div ng-if="!$ctrl.done && $ctrl.userDid" layout="row" layout-padding>
         <md-button class="md-raised md-primary" ng-disabled="$ctrl.loading"

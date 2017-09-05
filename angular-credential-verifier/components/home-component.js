@@ -29,7 +29,9 @@ function Ctrl($scope) {
         }
       });
       console.log('credential received by verifier', self.credential);
-      self.done = true;
+      if(self.credential) {
+        self.done = true;
+      }
     } catch(e) {
       console.error(e);
     }

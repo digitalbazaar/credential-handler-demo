@@ -25,6 +25,14 @@ function Ctrl($scope) {
     $scope.$apply();
   });
 
+  self.cancel = () => {
+    self.loading = true;
+    window.parent.postMessage({
+      type: 'response',
+      credential: null
+    }, window.location.origin);
+  };
+
   self.send = () => {
     self.loading = true;
     window.parent.postMessage({

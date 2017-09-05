@@ -11,7 +11,9 @@ import CredentialStoreComponent from './credential-store-component';
 
 'use strict';
 
-const module = angular.module('angular-credential-repository', ['ngMaterial']);
+const module = angular.module(
+  'angular-credential-repository',
+  ['ngMaterial', 'bedrock.card-displayer', 'bedrock.credential']);
 module.component('cwHome', HomeComponent);
 module.component('cwCredentialRequest', CredentialRequestComponent);
 module.component('cwCredentialStore', CredentialStoreComponent);
@@ -65,4 +67,21 @@ module.config($routeProvider => {
         }
       }
     });
+});
+
+/* @ngInject */
+module.run(brCredentialService => {
+  // generic card types
+  const cardTypes = [
+    'br:test:PassportCredential'
+  ];
+  cardTypes.forEach(cardType => {
+    const accept = {};
+    accept[cardType] = {};
+    brCredentialService.registerDisplayer({
+      id: 'urn:bedrock:card:type:' + cardType,
+      accept: accept,
+      directive: 'br-credential-card-displayer'
+    });
+  });
 });

@@ -38,8 +38,10 @@ function Ctrl($scope) {
       const credential = new WebCredential(
         'VerifiableProfile', createDemoProfile(self.userDid));
       self.credential = await navigator.credentials.store(credential);
-      console.log('credential stored', self.credential);
-      self.done = true;
+      if(self.credential) {
+        console.log('credential stored', self.credential);
+        self.done = true;
+      }
     } catch(e) {
       console.error(e);
     }
@@ -63,7 +65,7 @@ function createDemoProfile(did) {
     credential: [{
       "@graph": {
         "@context": CONTEXT,
-        "id": uuid(),
+        "id": 'urn:uuid:' + uuid(),
         "type": ["Credential", "br:test:PassportCredential"],
         "name": "Passport",
         "issued": new Date().toJSON(),

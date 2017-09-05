@@ -55,12 +55,10 @@ function Ctrl($compile, $location, $scope) {
       response = await navigator.credentialMediator.ui.selectCredentialHint(
         selection.hintOption);
       console.log('response', response);
+      self.credentialOperationPromise.resolve(response);
     } catch(e) {
       console.error(e);
       self.credentialOperationPromise.reject(e);
-    }
-    if(response) {
-      self.credentialOperationPromise.resolve(response);
     }
 
     self.display = null;
