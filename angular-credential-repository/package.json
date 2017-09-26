@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "main": "index.js",
+  "less": "main.less",
   "scripts": {
     "start": "node dev.js",
     "postinstall": "node dev.js compile-less"
