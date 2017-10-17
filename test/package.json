@@ -1,0 +1,31 @@
+{
+  "name": "credential-handler-demo-e2e",
+  "version": "0.0.1-0",
+  "private": true,
+  "scripts": {
+    "demo": "node test.js test --framework protractor --test-config demo.config.js",
+    "demo-sauce": "node test.js test --framework protractor --test-config demo.config.js --sauce-config default"
+  },
+  "dependencies": {
+    "bedrock": "^1.6.0",
+    "bedrock-angular": "^4.0.0",
+    "bedrock-angular-form": "^3.0.6",
+    "bedrock-docs": "^2.1.0",
+    "bedrock-express": "^2.0.6",
+    "bedrock-protractor": "github:digitalbazaar/bedrock-protractor#systemjs",
+    "bedrock-server": "^2.2.1",
+    "bedrock-test": "github:digitalbazaar/bedrock-test#2.x",
+    "bedrock-validation": "^2.2.1",
+    "bedrock-views": "^5.1.0",
+    "uuid": "^3.1.0"
+  },
+  "bedrock": {
+    "browserDependencies": [
+      "bedrock-angular",
+      "bedrock-angular-form"
+    ]
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
