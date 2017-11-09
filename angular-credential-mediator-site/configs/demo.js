@@ -21,8 +21,8 @@ bedrock.events.on('bedrock-express.ready', app => {
 // server info
 config.server.port = 19081;
 config.server.httpPort = 19080;
-config.server.domain = 'credential-mediator.demo.digitalbazaar.com';
-config.server.host = 'credential-mediator.demo.digitalbazaar.com';
+config.server.domain = 'credential-mediator.demo.veres.io';
+config.server.host = 'credential-mediator.demo.veres.io';
 config.server.baseUri = 'https://' + config.server.host;
 
 config.views.vars.minify = true;

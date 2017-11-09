@@ -22,8 +22,8 @@ bedrock.events.on('bedrock-express.ready', app => {
 // server info
 config.server.port = 18081;
 config.server.httpPort = 18080;
-config.server.domain = 'credential-issuer.demo.digitalbazaar.com';
-config.server.host = 'credential-issuer.demo.digitalbazaar.com';
+config.server.domain = 'credential-issuer.demo.veres.io';
+config.server.host = 'credential-issuer.demo.veres.io';
 config.server.baseUri = 'https://' + config.server.host;
 
 config.views.vars.minify = true;
