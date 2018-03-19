@@ -51,10 +51,8 @@ describe('Payment Handler Tests', () => {
     personalIdentity.click();
     browser.wait(EC.visibilityOf($('iframe')), 5000);
     // NOTE: this is a non-angular page and has 2 child iframes
-    browser.ignoreSynchronization = true;
     browser.switchTo().frame(0);
     // NOTE: this page is angular
-    browser.ignoreSynchronization = false;
     browser.switchTo().frame(1);
     browser.wait(EC.visibilityOf($('cw-credential-store')), 5000);
     element(by.buttonText('Yes')).click();
