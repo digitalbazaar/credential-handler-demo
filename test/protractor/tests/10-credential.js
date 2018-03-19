@@ -50,6 +50,7 @@ describe('Payment Handler Tests', () => {
     const personalIdentity = identityList.get(0);
     personalIdentity.click();
     browser.wait(EC.visibilityOf($('iframe')), 5000);
+    browser.waitForAngularEnabled(false);
     // NOTE: this is a non-angular page and has 2 child iframes
     browser.switchTo().frame(0);
     // NOTE: this page is angular
@@ -57,7 +58,6 @@ describe('Payment Handler Tests', () => {
     browser.wait(EC.visibilityOf($('cw-credential-store')), 5000);
     element(by.buttonText('Yes')).click();
     browser.switchTo().defaultContent();
-    // browser.sleep(10000);
   });
   it('confirms credential details', () => {
     browser.wait(EC.visibilityOf($('ci-home')), 5000);
@@ -83,18 +83,21 @@ describe('Payment Handler Tests', () => {
     personalIdentity.click();
     browser.wait(EC.visibilityOf($('iframe')), 5000);
     // NOTE: this is a non-angular page and has 2 child iframes
-    browser.ignoreSynchronization = true;
     browser.switchTo().frame(0);
     // NOTE: this page is angular
-    browser.ignoreSynchronization = false;
     browser.switchTo().frame(1);
     browser.wait(EC.visibilityOf($('cw-credential-request')), 5000);
-    element(by.buttonText('Yes')).click();
+    const yesButton = element(by.buttonText('Yes'));
+    browser.wait(EC.elementToBeClickable(yesButton), 5000);
+    yesButton.click();
     browser.switchTo().defaultContent();
   });
   it('confirms credential details', () => {
     browser.wait(EC.visibilityOf($('cv-home')), 5000);
-    element.all(by.linkText('here')).get(0).click();
+    const hereLink = element.all(by.linkText('here')).get(0);
+    browser.wait(EC.visibilityOf(hereLink, 5000));
+    hereLink.click();
+    // element.all(by.linkText('here')).get(0).click();
     $('pre').getText().then(credentialText => {
       const credentialDetails = JSON.parse(credentialText);
       credentialDetails.data.credential[0]['@graph'].claim.name

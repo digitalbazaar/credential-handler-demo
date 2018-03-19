@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "demo": "node test.js test --framework protractor --test-config demo.config.js",
-    "demo-sauce": "node test.js test --framework protractor --test-config demo.config.js --sauce-config default"
+    "demo-sauce": "node test.js test --framework protractor --test-config demo.config.js --sauce-config default --sauce-name credential-handler-demo"
   },
   "dependencies": {
     "bedrock": "^1.6.0",

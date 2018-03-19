@@ -138,7 +138,12 @@ const localCaps = {
     browserName: 'MicrosoftEdge',
     platform: 'Windows 10',
     version: '15.15063'
-  }
+  },
+  edge16: {
+    browserName: 'MicrosoftEdge',
+    platform: 'Windows 10',
+    version: '16.16299'
+  },
 };
 
 const localGroups = {
@@ -159,6 +164,7 @@ const localGroups = {
     // localCaps.edge13,
     localCaps.edge14,
     localCaps.edge15,
+    localCaps.edge16,
   ],
   firefox: [
     localCaps.firefox56,
@@ -175,4 +181,4 @@ const localGroups = {
   ]
 };
 
-config.sauceLabs.multiCapabilities = localGroups.chrome;
+config.sauceLabs.multiCapabilities = localGroups.edge;
