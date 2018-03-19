@@ -14,7 +14,7 @@
     "bedrock-express": "^2.0.6",
     "bedrock-protractor": "github:digitalbazaar/bedrock-protractor#systemjs",
     "bedrock-server": "^2.2.1",
-    "bedrock-test": "github:digitalbazaar/bedrock-test#2.x",
+    "bedrock-test": "^2.0.0",
     "bedrock-validation": "^2.2.1",
     "bedrock-views": "^5.1.0",
     "uuid": "^3.1.0"
