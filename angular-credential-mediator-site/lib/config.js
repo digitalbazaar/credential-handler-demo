@@ -10,7 +10,7 @@ require('bedrock-server');
 // server info
 config.server.port = 15443;
 config.server.httpPort = 15080;
-config.server.domain = 'credential.mediator.dev';
+config.server.domain = 'credential.mediator.localhost';
 
 // angular-credential-mediator-site pseudo package
 const rootPath = path.join(__dirname, '..');

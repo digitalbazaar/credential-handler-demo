@@ -14,7 +14,7 @@ require('bedrock-did-client');
 // server info
 config.server.port = 13443;
 config.server.httpPort = 13080;
-config.server.domain = 'example.verifier.dev';
+config.server.domain = 'example.verifier.localhost';
 
 // angular-credential-verifier pseudo package
 const rootPath = path.join(__dirname, '..');
