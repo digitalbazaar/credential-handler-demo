@@ -10,15 +10,16 @@
   "dependencies": {
     "angular-web-request-mediator": "^0.1.0",
     "bedrock": "^1.4.1",
-    "bedrock-angular": "^3.0.0",
+    "bedrock-angular": "=3.1.2",
     "bedrock-docs": "^2.1.0",
     "bedrock-express": "^2.0.6",
     "bedrock-server": "^2.2.0",
     "bedrock-validation": "^2.2.1",
-    "bedrock-views": "^5.1.0",
+    "bedrock-views": "=5.3.0",
     "bedrock-webpack": "^1.2.2",
     "credential-mediator-polyfill": "^0.1.0",
     "font-awesome": "^4.7.0",
+    "jsonld": "=0.4.12",
     "web-request-rpc": "^0.1.0"
   },
   "bedrock": {

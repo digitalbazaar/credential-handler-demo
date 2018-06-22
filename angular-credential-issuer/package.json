@@ -8,18 +8,19 @@
     "postinstall": "node dev.js compile-less"
   },
   "dependencies": {
-    "bedrock": "^1.4.1",
-    "bedrock-angular": "^3.0.0",
-    "bedrock-angular-material": "^1.0.1",
+    "bedrock": "=1.7.0",
+    "bedrock-angular": "=3.1.2",
+    "bedrock-angular-material": "=1.0.1",
     "bedrock-did-client": "^1.1.1",
-    "bedrock-docs": "^2.1.0",
-    "bedrock-express": "^2.0.6",
-    "bedrock-server": "^2.2.0",
-    "bedrock-validation": "^2.2.1",
-    "bedrock-views": "^5.1.0",
+    "bedrock-docs": "=2.1.0",
+    "bedrock-express": "=2.0.6",
+    "bedrock-server": "=2.3.0",
+    "bedrock-validation": "=2.2.1",
+    "bedrock-views": "=5.3.0",
     "bedrock-webpack": "^1.0.2",
     "credential-handler-polyfill": "^0.1.0",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "jsonld": "=0.4.12"
   },
   "bedrock": {
     "browserDependencies": [

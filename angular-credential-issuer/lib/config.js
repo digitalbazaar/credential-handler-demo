@@ -25,4 +25,5 @@ config.views.system.packages.push({
 
 // URLs for Authorization.io
 cc('views.vars.authorization-io.baseUri', () =>
-  config['did-client']['authorization-io'].baseUrl);
+  'https://demo.authorization.io');
+//  config['did-client']['authorization-io'].baseUrl);
