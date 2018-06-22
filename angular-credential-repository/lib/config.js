@@ -14,7 +14,7 @@ require('bedrock-did-client');
 // server info
 config.server.port = 14443;
 config.server.httpPort = 14080;
-config.server.domain = 'example.credential-repository.dev';
+config.server.domain = 'example.credential-repository.localhost';
 
 // angular-credential-repository pseudo package
 const rootPath = path.join(__dirname, '..');
