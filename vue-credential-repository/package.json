@@ -1,0 +1,56 @@
+{
+  "name": "vue-credential-repository",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "less": "app.less",
+  "scripts": {
+    "start": "node dev.js",
+    "postinstall": "node dev.js compile-less"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.8",
+    "animate.css": "^3.6.1",
+    "bedrock": "^1.12.1",
+    "bedrock-docs": "^2.1.0",
+    "bedrock-express": "^2.0.6",
+    "bedrock-server": "^2.2.0",
+    "bedrock-views": "github:digitalbazaar/bedrock-views#vue",
+    "bedrock-vue": "^1.0.0",
+    "bedrock-web": "^1.0.0",
+    "bedrock-webpack": "digitalbazaar/bedrock-webpack#vue",
+    "quasar-framework": "^0.15.10",
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1",
+    "credential-handler-polyfill": "^0.1.0",
+    "localforage": "^1.5.0"
+  },
+  "bedrock": {
+    "browserDependencies": [
+      "animate.css",
+      "bedrock-vue",
+      "credential-handler-polyfill",
+      "localforage",
+      "quasar-framework",
+      "vue",
+      "vue-router",
+      "@fortawesome/fontawesome-free-webfonts"
+    ],
+    "manifest": {
+      "@fortawesome/fontawesome-free-webfonts": {
+        "less": [
+          "less/fontawesome.less",
+          "less/fa-regular.less",
+          "less/fa-solid.less"
+        ]
+      },
+      "quasar-framework": {
+        "main": "dist/umd/quasar.mat.umd.js",
+        "style": "dist/umd/quasar.mat.css"
+      }
+    }
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  }
+}

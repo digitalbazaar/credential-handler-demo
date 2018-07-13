@@ -1,0 +1,186 @@
+@import 'https://fonts.googleapis.com/css?family=Alegreya:400i';
+@import 'https://fonts.googleapis.com/css?family=Kotta+One';
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:800';
+@import 'https://fonts.googleapis.com/css?family=Roboto';
+@import 'https://fonts.googleapis.com/css?family=Roboto+Condensed';
+
+/* ISO/IEC 7810 ID-1 cards are 85.60 x 53.98 mm (3.370 x 2.125 in) with
+  rounded corners with a radius of 2.88–3.48 mm. Dimensions here are based
+  on 300px width for mobile devices (an iPhone 5 screen width is 320px, which
+  leaves room for up to 10px of margin). */
+@br-card-id-1-width-mm: 85.60;
+@br-card-id-1-height-mm: 53.98;
+@br-card-id-1-width: 300px;
+@br-card-id-1-height: (
+  (@br-card-id-1-height-mm / @br-card-id-1-width-mm) *
+  @br-card-id-1-width);
+/*@br-card-id-1-height: percentage(
+ (@br-card-id-1-height-mm / @br-card-id-1-width-mm));*/
+
+/* 1 inch = 25.4 mm */
+@br-card-id-1-inch: percentage((25.4 / @br-card-id-1-width-mm));
+
+/* Average of 2.88mm and 3.48mm, as a percentage of width, height. */
+@br-card-id-1-radius-mm: ((2.88 + 3.48) / 2);
+@br-card-id-1-radius-width: percentage(
+  (@br-card-id-1-radius-mm / @br-card-id-1-width-mm));
+@br-card-id-1-radius-height: percentage(
+  (@br-card-id-1-radius-mm / @br-card-id-1-height-mm));
+
+@br-card-id-1-card-border-size-mm: 0.6;
+@br-card-id-1-card-border-top: percentage(
+  (@br-card-id-1-card-border-size-mm / @br-card-id-1-height-mm));
+@br-card-id-1-card-border-left: percentage(
+  (@br-card-id-1-card-border-size-mm / @br-card-id-1-width-mm));
+
+@br-card-id-1-card-border-radius-width: (
+  @br-card-id-1-radius-width - @br-card-id-1-card-border-left);
+@br-card-id-1-card-border-radius-height: (
+  @br-card-id-1-radius-height - @br-card-id-1-card-border-top);
+
+@br-card-header-height: 17.5%;
+
+/* `width` can be dynamically set to scale card, but `font-size` must also be
+  set to 1/10th of `width`. Note: Presently, `height` must also be set to
+  53.98/85.6 times `width`. Some CSS-magic w/padding-top percentages could
+  potentially remove this additional calculation in the future. */
+.br-card-id-1 {
+  position: relative;
+  width: @br-card-id-1-width;
+  height: @br-card-id-1-height;
+  background-color: #eee;
+  border-radius: @br-card-id-1-radius-width ~'/'
+    @br-card-id-1-radius-height;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
+  margin: 0 4px 4px 0;
+  /*border: 1px solid #d0d0d0;*/
+  text-align: left;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-size: (@br-card-id-1-width / 100);
+}
+/* card border */
+.br-card-id-1-border:before {
+  position: absolute;
+  content: '';
+  top: @br-card-id-1-card-border-top;
+  bottom: @br-card-id-1-card-border-top;
+  left: @br-card-id-1-card-border-left;
+  right: @br-card-id-1-card-border-left;
+  border-radius: @br-card-id-1-card-border-radius-width ~'/'
+    @br-card-id-1-card-border-radius-height;
+  /* dark shadow permeates outward, light shadow permeats inward creating
+    an edge effect */
+  box-shadow:
+    /* dark outward shadow lower right creates edge shadow */
+    30px 30px 100px 1px rgba(0, 0, 0, 0.2),
+    /* bright outward shadow upper left creates edge highlight */
+    -30px -30px 100px 1px rgba(255, 255, 255, 0.5),
+    /* bright inward shadow creates inner edge basis */
+    inset 0 0 2px 1px rgba(255, 255, 255, 0.25);
+}
+/* radial gradient */
+.br-card-id-1-radial-gradient:after {
+	position: absolute;
+  content: '';
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: radial-gradient(
+	  circle at -25% -25%,
+	  rgba(255, 255, 255, 0.74902) 0%,
+	  transparent 70%,
+	  rgba(0, 0, 0, 0.2) 90%);
+}
+
+.br-text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.br-scale-text-wide {
+  display: inline-block;
+  -webkit-transform:scale(1.5, 1.0);
+  -moz-transform:scale(1.5, 1.0);
+  -ms-transform:scale(1.5, 1.0);
+  -o-transform:scale(1.5, 1.0);
+  transform:scale(1.5, 1.0);
+}
+
+.br-credential-card-header {
+  color: black;
+  height: @br-card-header-height;
+  padding-top: 1%;
+  background-color: rgba(144, 167, 253, 0.25);
+  border-bottom: 2px solid #809ded;
+  font-family: 'Roboto', sans-serif;
+  font-size: 6em;
+  font-weight: bold;
+  color: #4786e4;
+  text-shadow: 1px 1px 1px #2f5a9a;
+  -webkit-font-smoothing: antialiased;
+}
+.br-credential-card-body {
+  width: 100%;
+  height: (100% - @br-card-header-height);
+  background-color: rgba(184, 219, 255, 0.1);
+}
+.br-credential-card-body-col-1 {
+  width: @br-card-id-1-inch;
+  display: inline-block;
+}
+.br-credential-card-body-col-2 {
+  width: (100% - @br-card-id-1-inch);
+  display: inline-block;
+  float: right;
+  padding-top: 4px;
+  padding-left: 2px;
+}
+.br-credential-card-picture {
+  height: 64%;
+}
+.br-credential-card-picture > img {
+  width: 100%;
+  height: auto;
+  margin-top: 2px;
+  padding: 1px;
+}
+dl.br-credential-card-attr {
+  margin-bottom: 3.5%;
+}
+dl.br-credential-card-attr > dt {
+  font-family: 'Kotta One', serif;
+  font-size: 2em;
+  color: #555;
+}
+dl.br-credential-card-attr > dd {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 2.75em;
+  color: #111;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.br-passport-row-1-col-1 {
+  display: inline-block;
+  vertical-align: top;
+}
+.br-passport-row-1-col-2 {
+  display: inline-block;
+  vertical-align: top;
+}
+.br-passport-row-1-col-3 {
+  width: @br-card-id-1-inch;
+  display: inline-block;
+  float: right;
+  vertical-align: top;
+}
+.br-passport-row-1-col-3 > img {
+  width: 100%;
+  height: auto;
+}
+.br-passport-row-2 {
+  width: 100%;
+}
