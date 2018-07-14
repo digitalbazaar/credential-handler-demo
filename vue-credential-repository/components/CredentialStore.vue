@@ -65,6 +65,7 @@
  */
 'use strict';
 
+import axios from 'axios';
 import localforage from 'localforage';
 import CredentialCard from './CredentialCard.vue';
 
@@ -106,8 +107,23 @@ export default {
     },
     async store() {
       this.loading = true;
-      const storage = localforage.createInstance({name: 'credentials'});
-      await storage.setItem(this.profile.id, this.credential);
+      if(typeof document.hasStorageAccess === 'function') {
+        // webkit browsers need to use a database for storage due to cookie
+        // partitioning
+        if(this.credential) {
+          try {
+            await axios.post(
+              '/credentials/' + encodeURIComponent(this.profile.id),
+              this.credential);
+          } catch(e) {
+            this.cancel();
+            return;
+          }
+        }
+      } else {
+        const storage = localforage.createInstance({name: 'credentials'});
+        await storage.setItem(this.profile.id, this.credential);
+      }
 
       window.parent.postMessage({
         type: 'response',
