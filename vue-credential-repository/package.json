@@ -11,23 +11,26 @@
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.8",
     "animate.css": "^3.6.1",
+    "axios": "^0.18.0",
     "bedrock": "^1.12.1",
     "bedrock-docs": "^2.1.0",
-    "bedrock-express": "^2.0.6",
+    "bedrock-express": "^2.1.0",
+    "bedrock-mongodb": "^5.2.0",
     "bedrock-server": "^2.2.0",
     "bedrock-views": "github:digitalbazaar/bedrock-views#vue",
     "bedrock-vue": "^1.0.0",
     "bedrock-web": "^1.0.0",
     "bedrock-webpack": "digitalbazaar/bedrock-webpack#vue",
+    "credential-handler-polyfill": "^0.1.0",
+    "localforage": "^1.5.0",
     "quasar-framework": "^0.15.10",
     "vue": "^2.5.16",
-    "vue-router": "^3.0.1",
-    "credential-handler-polyfill": "^0.1.0",
-    "localforage": "^1.5.0"
+    "vue-router": "^3.0.1"
   },
   "bedrock": {
     "browserDependencies": [
       "animate.css",
+      "axios",
       "bedrock-vue",
       "credential-handler-polyfill",
       "localforage",
@@ -37,6 +40,9 @@
       "@fortawesome/fontawesome-free-webfonts"
     ],
     "manifest": {
+      "axios": {
+        "main": "dist/axios.min.js"
+      },
       "@fortawesome/fontawesome-free-webfonts": {
         "less": [
           "less/fontawesome.less",
