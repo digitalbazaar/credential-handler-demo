@@ -1,6 +1,6 @@
 <template>
   <div class="row" style="margin: 0;">
-    <div class="br-card-id-1 br-card-id-1-border" xstyle="cardStyle">
+    <div class="br-card-id-1 br-card-id-1-border" :style="cardStyle">
       <div class="br-credential-card-header" align="center">
         {{credential.name | uppercase}}
       </div>
@@ -78,21 +78,10 @@ export default {
     cardBackgroundColor: String,
     cardBackgroundImage: String
   },
-  /*data() {
-    return {
-      credential2: { "@context": [ "https://w3id.org/identity/v1", "https://w3id.org/credentials/v1", { "br": "urn:bedrock:" } ], "id": "did:method1:1234-1234-1234-1234", "credential": [ { "@graph": { "@context": [ "https://w3id.org/identity/v1", "https://w3id.org/credentials/v1", { "br": "urn:bedrock:" } ], "id": "urn:uuid:a4cbc46c-19bf-4966-8db6-2f164ec97fb9", "type": [ "Credential", "br:test:PassportCredential" ], "name": "Passport", "issued": "2018-07-13T19:48:48.965Z", "issuer": "urn:issuer:test", "image": "http://simpleicon.com/wp-content/uploads/global_1-128x128.png", "claim": { "id": "did:method1:1234-1234-1234-1234", "name": "Pat Doe", "image": "http://simpleicon.com/wp-content/uploads/business-woman-2-128x128.png", "schema:birthDate": { "@value": "1980-01-01T00:00:00Z", "@type": "xsd:dateTime" }, "schema:gender": "female", "schema:height": "65in", "br:test:eyeColor": "blue", "schema:nationality": { "name": "United States" }, "address": { "type": "PostalAddress", "streetAddress": "1 Main St.", "addressLocality": "Blacksburg", "addressRegion": "Virginia", "postalCode": "24060", "addressCountry": "US" }, "br:test:passport": { "type": "br:test:Passport", "name": "Test Passport", "br:test:documentId": "1531511328965", "issuer": "https://example.gov/", "issued": "2010-01-07T01:02:03Z", "expires": "2020-01-07T01:02:03Z" } }, "signature": { "type": "RsaSignature2017", "created": "2017-08-09T01:02:03Z", "creator": "did:db0f0ccd-2062-4b7b-8cbd-bb14d50769b0/keys/1", "signatureValue": "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz01234567890ABCDEFGHIJKLM==" } } } ] }
-    };
-  },*/
   computed: {
     cardStyle() {
       return computeCardStyle({width: this.cardWidth});
-    },
-    /*
-    // FIXME: remove me
-    credential() {
-      console.log('this.credential2', this.credential2)
-      return this.credential2.credential[0]['@graph'];
-    }*/
+    }
   },
   filters: {
     uppercase: value => (value || '').toUpperCase()
@@ -119,7 +108,7 @@ function computeCardStyle({type = 'id-1', width = '300px', background}) {
   }
 
   if(typeof width === 'string') {
-    const width = parseCssValue(width);
+    width = parseCssValue(width);
     style.width = width;
     // id-1 dimensions are 85.60mm x 53.98mm
     style.height = (width.value * 53.98 / 85.60) + width.unit;
