@@ -37,3 +37,9 @@ Run the demo credential repository:
 ```
 npm start
 ```
+
+## License
+
+The code in this repository is under a BSD license. ***However***, it relies on
+packages that are not. Specifically, the demo makes use of the Bedrock framework
+which is under a different, [Non-commercial license](https://github.com/digitalbazaar/bedrock/blob/master/LICENSE.md).
