@@ -21,7 +21,7 @@
     "bedrock-vue": "^1.0.0",
     "bedrock-web": "^1.0.0",
     "bedrock-webpack": "digitalbazaar/bedrock-webpack#vue",
-    "credential-handler-polyfill": "^0.1.0",
+    "credential-handler-polyfill": "^1.0.0",
     "localforage": "^1.5.0",
     "quasar-framework": "^0.15.10",
     "vue": "^2.5.16",
