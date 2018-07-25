@@ -3,25 +3,17 @@
  * Copyright (c) 2017-2018, Digital Bazaar, Inc.
  * All rights reserved.
  */
+/* global window */
 'use strict';
 
 import * as brVue from 'bedrock-vue';
 import * as polyfill from 'credential-handler-polyfill';
 import {activate as activateHandler} from './credential-handler';
-import iconSet from 'quasar-framework/icons/fontawesome';
-import BrRoot from './BrRoot.vue';
-import CredentialRequest from './CredentialRequest.vue';
-import CredentialStore from './CredentialStore.vue';
-import Home from './Home.vue';
-import Quasar from 'quasar-framework';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 // install all plugins
 Vue.use(brVue);
-
-// replace default `br-root` with a custom one
-Vue.component('br-root', BrRoot);
 
 console.log('credential repository loading at ', window.location.href);
 
@@ -38,23 +30,35 @@ brVue.setRootVue(async () => {
     return false;
   }
 
+  // load dynamic imports in parallel
+  const [
+    Quasar,
+    {default: iconSet}
+  ] = await Promise.all([
+    import('quasar-framework'),
+    import('quasar-framework/icons/fontawesome')
+  ]);
+
+  // replace default `br-root` with a custom one
+  Vue.component('br-root', () => import('./BrRoot.vue'));
+
   const router = new VueRouter({
     mode: 'history',
     routes: [{
       path: '/',
-      component: Home,
+      component: () => import('./Home.vue'),
       meta: {
         title: 'Credential Repository Example'
       }
     }, {
       path: '/credentialrequest',
-      component: CredentialRequest,
+      component: () => import('./CredentialRequest.vue'),
       meta: {
         title: 'Credential Wallet'
       }
     }, {
       path: '/credentialstore',
-      component: CredentialStore,
+      component: () => import('./CredentialStore.vue'),
       meta: {
         title: 'Credential Wallet'
       }
