@@ -85,6 +85,9 @@ export default {
     self.loading = true;
 
     window.addEventListener('message', async event => {
+      if(event.data.type !== 'credentialrequest') {
+        return;
+      }
       console.log('UI window got credential request', event.data);
       self.credentialRequestOptions = event.data.credentialRequestOptions;
       self.domain = event.data.credentialRequestOrigin;
