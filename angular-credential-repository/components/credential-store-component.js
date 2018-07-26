@@ -16,6 +16,9 @@ function Ctrl($scope) {
   self.loading = true;
 
   window.addEventListener('message', event => {
+    if(event.data.type !== 'credentialstore') {
+      return;
+    }
     console.log('UI window got credential storage request', event.data);
     self.profile = event.data.credential.data;
     self.credential = self.profile.credential[0]['@graph'];
