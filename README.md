@@ -20,7 +20,7 @@ the appropriate Credential Handler is loaded and a credential event is sent
 to it.
 
 The Credential Handler receives the event via a
-[Service Worker][https://w3c.github.io/ServiceWorker] or, if the
+[Service Worker](https://w3c.github.io/ServiceWorker) or, if the
 [Credential Handler Polyfill][] is used, a simple page with no UI elements is
 loaded that uses the polyfill to receive and respond to the event.
 
