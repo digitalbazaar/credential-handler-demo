@@ -5,7 +5,7 @@ Credential Handler API demo
 
 A Credential Handler is an event handler for credential request and
 credential storage events. The [Credential Handler API][] helps
-solve the [Nascar Problem][https://indieweb.org/NASCAR_problem]. The
+solve the [Nascar Problem](https://indieweb.org/NASCAR_problem). The
 [Credential Handler API][] enables websites to install Credential Handlers that
 can respond when users visit other websites that request or store credentials.
 
