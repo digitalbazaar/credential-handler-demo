@@ -51,6 +51,5 @@ config.loggers.app.bedrock.enableChownDir = true;
 config.loggers.access.bedrock.enableChownDir = true;
 config.loggers.error.bedrock.enableChownDir = true;
 
-// configures `authorization.io` URL for DID lookup
-config['did-client']['authorization-io'].baseUrl =
-  'https://demo.authorization.io';
+// configures `authorization.io` URL for mediator
+config['did-client']['authorization-io'].baseUrl = 'https://beta.authn.io';

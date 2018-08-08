@@ -195,7 +195,7 @@ async function addHints(registration) {
   return Promise.all([
     registration.credentialManager.hints.set(
       'did:method1:1234-1234-1234-1234', {
-        name: 'My social wallet',
+        name: 'Your social wallet',
         enabledTypes: ['VerifiableProfile'],
         match: {
           VerifiableProfile: {
@@ -205,7 +205,7 @@ async function addHints(registration) {
       }),
     registration.credentialManager.hints.set(
       'did:method1:1234-1234-1234-1235', {
-        name: 'My business wallet',
+        name: 'Your business wallet',
         enabledTypes: ['VerifiableProfile'],
         match: {
           VerifiableProfile: {
@@ -215,7 +215,7 @@ async function addHints(registration) {
       }),
     registration.credentialManager.hints.set(
       'did:method1:1234-1234-1234-1236', {
-        name: 'My account for this website',
+        name: 'Your account for this website',
         enabledTypes: ['VerifiableProfile'],
         match: {
           VerifiableProfile: {
