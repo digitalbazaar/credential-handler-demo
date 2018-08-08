@@ -26,5 +26,5 @@ config.views.system.packages.push({
 // URLs for Authorization.io
 cc('views.vars.authorization-io.baseUri', () =>
 //  'https://authorization.localhost:33443');
-  'https://demo.authorization.io');
+  'https://beta.authn.io');
 //  config['did-client']['authorization-io'].baseUrl);
