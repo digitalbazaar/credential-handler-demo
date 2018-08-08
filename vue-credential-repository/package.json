@@ -16,6 +16,7 @@
     "bedrock-docs": "^2.1.0",
     "bedrock-express": "^2.1.0",
     "bedrock-mongodb": "^5.2.0",
+    "bedrock-quasar": "^1.0.0",
     "bedrock-server": "^2.2.0",
     "bedrock-views": "^6.0.0",
     "bedrock-vue": "^1.0.0",
@@ -23,7 +24,6 @@
     "bedrock-webpack": "^2.0.0",
     "credential-handler-polyfill": "^1.0.0",
     "localforage": "^1.5.0",
-    "quasar-framework": "^0.15.10",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
@@ -31,10 +31,10 @@
     "browserDependencies": [
       "animate.css",
       "axios",
+      "bedrock-quasar",
       "bedrock-vue",
       "credential-handler-polyfill",
       "localforage",
-      "quasar-framework",
       "vue",
       "vue-router",
       "@fortawesome/fontawesome-free-webfonts"
@@ -49,10 +49,6 @@
           "less/fa-regular.less",
           "less/fa-solid.less"
         ]
-      },
-      "quasar-framework": {
-        "main": "dist/umd/quasar.mat.umd.js",
-        "style": "dist/umd/quasar.mat.css"
       }
     }
   },

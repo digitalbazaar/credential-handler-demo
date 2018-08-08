@@ -8,7 +8,6 @@
 
 import * as brVue from 'bedrock-vue';
 import * as polyfill from 'credential-handler-polyfill';
-import {activate as activateHandler} from './credential-handler';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
@@ -26,9 +25,14 @@ brVue.setRootVue(async () => {
 
   if(window.location.pathname === '/credential-handler') {
     // activate headless handler; do not bootstrap Vue app
+    const {activate: activateHandler} = await import('./credential-handler.js');
     activateHandler(MEDIATOR_ORIGIN);
     return false;
   }
+
+  // FIXME: determine if this IE11 support code must be loaded serially
+  const brQuasar = await import('bedrock-quasar');
+  await brQuasar.supportIE11();
 
   // load dynamic imports in parallel
   const [
@@ -66,7 +70,10 @@ brVue.setRootVue(async () => {
   });
 
   Quasar.icons.set(iconSet);
-  //Quasar.utils.colors.setBrand('primary', '#ffffff');
+  brQuasar.theme({
+    Quasar,
+    brand: {}
+  });
 
   const BrApp = Vue.component('br-app');
   return new BrApp({
