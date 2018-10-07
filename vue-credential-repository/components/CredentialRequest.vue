@@ -91,19 +91,21 @@ export default {
       console.log('UI window got credential request', event.data);
       self.credentialRequestOptions = event.data.credentialRequestOptions;
       self.domain = event.data.credentialRequestOrigin;
+      // use default hint key for demo if a specific one was not chosen
+      const hintKey = event.data.hintKey || 'did:method1:1234-1234-1234-1234';
       if(typeof document.hasStorageAccess === 'function') {
         // webkit browsers need to use a database for storage due to cookie
         // partitioning
         try {
           const response = await axios.get(
-            '/credentials/' + encodeURIComponent(event.data.hintKey));
+            '/credentials/' + encodeURIComponent(hintKey));
           self.credential = response.data;
         } catch(e) {
           self.credential = null;
         }
       } else {
         const storage = localforage.createInstance({name: 'credentials'});
-        self.credential = await storage.getItem(event.data.hintKey);
+        self.credential = await storage.getItem(hintKey);
       }
       self.loading = false;
     });
