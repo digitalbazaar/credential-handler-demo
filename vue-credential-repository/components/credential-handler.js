@@ -23,6 +23,8 @@ function handleCredentialEvent(event) {
       let query = event.credentialRequestOptions.web.VerifiableProfile;
       query = Object.assign({}, query);
       delete query['@context'];
+      // use default hint key for demo if a specific one was not chosen
+      const hintKey = event.hintKey || 'did:method1:1234-1234-1234-1234';
       if('id' in query && 'publicKey' in query &&
         Object.keys(query).length === 2) {
         // cryptokey request, return verifiable profile immediately
@@ -30,7 +32,7 @@ function handleCredentialEvent(event) {
           dataType: 'VerifiableProfile',
           data: {
             '@context': 'https://w3id.org/identity/v1',
-            id: event.hintKey,
+            id: hintKey,
             // TODO: add public key credential
             // credential: ...
           }
