@@ -1,0 +1,12 @@
+{
+  "icons": [
+    {
+      "sizes": "48x48",
+      "src": "/images/wallet-solid.svg",
+      "type": "image/svg"
+    }
+  ],
+  "name": "Demo Credential Wallet",
+  "short_name": "Demo Cred Wallet"
+}
+
