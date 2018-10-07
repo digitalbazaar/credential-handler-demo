@@ -23,6 +23,17 @@ config.views.system.packages.push({
   manifest: path.join(rootPath, 'package.json')
 });
 
+// manifest.json
+config.express.static.push({
+  route: '/images',
+  path: path.join(__dirname, '..', 'components', 'images')
+});
+config.express.static.push({
+  route: '/manifest.json',
+  file: true,
+  path: path.join(__dirname, '..', 'components', 'manifest.json')
+});
+
 // common paths
 config.paths.cache = path.resolve(path.join(rootPath, '.cache'));
 config.paths.log = path.join(

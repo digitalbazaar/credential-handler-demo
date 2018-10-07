@@ -76,6 +76,9 @@
       }
       </pre>
     </div>
+    <div>
+      Icons provided by <a href="https://fontawesome.com/license">Font Awesome</a>
+    </div>
   </q-page>
 </template>
 <script>
