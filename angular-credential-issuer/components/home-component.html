@@ -16,7 +16,8 @@
       <div ng-if="!$ctrl.done && !$ctrl.userDid" layout="row" layout-padding>
         <md-button class="md-raised md-primary" ng-disabled="$ctrl.loading"
           ng-click="$ctrl.login()" flex>
-          Login
+          <span ng-if="!$ctrl.loading">Login</span>
+          <span ng-if="$ctrl.loading"><i class="fa fa-cog fa-2x fa-spin"></i></span>
         </md-button>
       </div>
       <div ng-if="!$ctrl.done && $ctrl.userDid" layout="row" layout-padding>
@@ -30,7 +31,8 @@
       <div ng-if="!$ctrl.done && $ctrl.userDid" layout="row" layout-padding>
         <md-button class="md-raised md-primary" ng-disabled="$ctrl.loading"
           ng-click="$ctrl.store()" flex>
-          Store Passport
+          <span ng-if="!$ctrl.loading">Store Passport</span>
+          <span ng-if="$ctrl.loading"><i class="fa fa-cog fa-2x fa-spin"></i></span>
         </md-button>
       </div>
       <div ng-if="$ctrl.done && $ctrl.credential" layout-padding>
@@ -45,7 +47,7 @@
         </div>
         <div style="margin-top: 10px">
           Click <a href="" ng-click="$ctrl.showCredential=!$ctrl.showCredential">here</a>
-          to see the stored credential in JSON format. <span ng-if="$ctrl.done">Click <a href="" ng-click="$ctrl.done=false">here</a> to start again.</span>
+          to see the stored credential in JSON format. <span ng-if="$ctrl.done">Click <a href="" ng-click="$ctrl.userDid=null;$ctrl.done=false">here</a> to start again.</span>
         </div>
         <pre ng-if="$ctrl.showCredential">{{$ctrl.credential | json}}</pre>
       </div>
