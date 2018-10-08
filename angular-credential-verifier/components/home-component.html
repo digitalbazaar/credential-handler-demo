@@ -16,7 +16,8 @@
       <div ng-if="!$ctrl.done" layout="row" layout-padding>
         <md-button class="md-raised md-primary" ng-disabled="$ctrl.loading"
           ng-click="$ctrl.request()" flex>
-          Provide Passport
+          <span ng-if="!$ctrl.loading">Provide Passport</span>
+          <span ng-if="$ctrl.loading"><i class="fa fa-cog fa-2x fa-spin"></i></span>
         </md-button>
       </div>
       <div ng-if="$ctrl.done && $ctrl.credential" layout-padding>
