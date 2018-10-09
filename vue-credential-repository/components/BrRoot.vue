@@ -25,7 +25,7 @@
       </q-list>
     </q-layout-drawer>
 
-    <q-page-container>
+    <q-page-container style="overflow: auto">
       <router-view/>
     </q-page-container>
 
