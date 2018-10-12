@@ -1,6 +1,6 @@
 <template>
   <q-page
-    class="column gutter-lg"
+    class="gutter-lg"
     style="background-color: white; height: 100vh"
     padding>
     <div v-if="loading" class="row">
