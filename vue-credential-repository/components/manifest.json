@@ -2,8 +2,15 @@
   "icons": [
     {
       "sizes": "48x48",
-      "src": "/images/wallet-solid.svg",
-      "type": "image/svg"
+      "src": "/images/wallet-dark.svg",
+      "type": "image/svg",
+      "theme_color": "light"
+    },
+    {
+      "sizes": "48x48",
+      "src": "/images/wallet-light.svg",
+      "type": "image/svg",
+      "theme_color": "dark"
     }
   ],
   "name": "Demo Credential Wallet",
