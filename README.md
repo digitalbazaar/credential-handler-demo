@@ -1,6 +1,9 @@
 # credential-handler-demo
 Credential Handler API demo
 
+***Note: This demo is obsolete, instead see:***
+https://github.com/credential-handler/credential-handler-polyfill#demo
+
 ## Background
 
 A Credential Handler is an event handler for credential request and
